@@ -1,10 +1,14 @@
 /---div .[row navig documentation]
 /---div .[column]
 
-MVC aplikace
-------------
+Framework
+---------
 - **[Píšeme první aplikaci! |quickstart] .[main]**
 - [Bootstrap] - zaváděcí soubor
+- [Konfigurace Frameworku |configuring]
+
+MVC aplikace
+------------
 - [Presentery |presenters]
 - [Komponenty a ovládací prvky |components]
 - [Routování URL |routing] - cool URL adresy
@@ -22,7 +26,6 @@ Dependency Injection
 --------------------
 - [Úvod |dependency-injection]
 - [Konfigurace služeb |di-configuration] - NEON syntaxe
-- [Konfigurace Frameworku |configuring]
 - [Získávání závislostí |di-usage] - předávání objektů
 - DI Container
 	- Defaultní rozšíření
