@@ -5,7 +5,6 @@ MVC aplikace
 ------------
 - **[Píšeme první aplikaci! |quickstart] .[main]**
 - [Bootstrap] - zaváděcí soubor
-- [Konfigurace |configuring]
 - [Presentery |presenters]
 - [Komponenty a ovládací prvky |components]
 - [Routování URL |routing] - cool URL adresy
@@ -21,10 +20,13 @@ Latte šablonovací systém
 
 Dependency Injection
 --------------------
-- [Dependency Injection]
-- [Konfigurace služeb |di-configuration]
+- [Úvod |dependency-injection]
+- [Konfigurace služeb |di-configuration] - NEON syntaxe
+- [Konfigurace Frameworku |configuring]
 - [Získávání závislostí |di-usage] - předávání objektů
-- [Rozšíření DI kontejneru |di-extensions]
+- DI Container
+	- Defaultní rozšíření
+	- [Vlastní rozšíření |di-extensions]
 
 Přístupová oprávnění
 --------------------

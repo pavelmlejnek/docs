@@ -5,7 +5,6 @@ MVC Application
 ---------------
 - **[Create Your First Application! |quickstart] .[main]**
 - [Bootstrap]
-- [Configuration |configuring]
 - [Presenters |presenters]
 - [Components and Controls |components]
 - [URL Routing |routing] - cool URL addresses
@@ -21,8 +20,9 @@ Latte Templating Engine
 
 Dependency Injection
 --------------------
-- [Dependency Injection]
-- [Services Configuration |di-configuration]
+- [Overview |dependency-inject]
+- [Services Configuration |di-configuration] - NEON syntax
+- [Framwork Configuration |configuring]
 - [Getting Dependencies |di-usage] - inject objects
 - [DI Container Extensions |di-extensions]
 

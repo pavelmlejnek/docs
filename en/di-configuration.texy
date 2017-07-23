@@ -289,9 +289,11 @@ services:
 	- PDO('sqlite::memory:)
 
 	-
-	    factory: Model\ArticleRepository
+		factory: Model\ArticleRepository
 		setup:
 			- setCacheStorage
+
+	- {class: Model\TextProvider, factory: Model\TextProviderFactory}
 \--
 
 However, even anonymous services can be referred to, instead of their name we use their type (class or interface):

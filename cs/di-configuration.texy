@@ -55,11 +55,11 @@ Konfigurační soubor je místem, kam umísťujeme definice vlastních služeb. 
 services:
 	database: PDO(%dsn%, %user%, %password%)
 
-# nebo ve dvou řádcích:
+	# nebo ve dvou řádcích:
 	database:
 		factory: PDO(%dsn%, %user%, %password%)
 
-# nebo ve třech řádcích :-)
+	# nebo ve třech řádcích :-)
 	database:
 		class: PDO
 		arguments: [%dsn%, %user%, %password%]
@@ -288,9 +288,11 @@ services:
 	- PDO('sqlite::memory:)
 
 	-
-	    factory: Model\ArticleRepository
+		factory: Model\ArticleRepository
 		setup:
 			- setCacheStorage
+
+	- {class: Model\TextProvider, factory: Model\TextProviderFactory}
 \--
 
 Nicméně i na anonymní služby lze odkazovat, jen místo názvu uvedeme jejich typ (třídu nebo rozhraní):
