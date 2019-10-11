@@ -12,7 +12,7 @@ Components are the foundation of reusable code. They make your work easier and a
 
 A component is a renderable object. It can be a form, menu, poll etc. Within one page there can be as many components as you wish. At https://componette.com you can find open-source components which were put there by volunteers from the Nette Framework community.
 
-You can find an example of a component and it's use in a page in the [example Fifteen |https://github.com/nette/examples/tree/master/Fifteen].
+You can find an example of a component and it's usage on a page in the [example Fifteen |https://github.com/nette/examples/tree/master/Fifteen].
 
 A component is a descendant of class [api:Nette\Application\UI\Control]:
 
@@ -31,7 +31,7 @@ When talking about components, we usually mean descendants of class [Control |ap
 Templates
 =========
 
-A component has factory for its [template |latte:]. It creates a template, passes several variables (shown below) and registers [built-in filters |latte:filters]. Rendering is our job and it is done in method `render()`. This is where we choose the file from which the template will be loaded. `render()` method is also the right place to register variables used in the template. The template can be put inside the same folder as the component and with the same file name.
+A component has a factory for its [template |latte:]. It creates a template, passes several variables (shown below) and registers [built-in filters |latte:filters]. Rendering is our job and it is done in method `render()`. This is where we choose the file from which the template will be loaded. `render()` method is also the right place to register variables used in the template. The template can be put inside the same folder as the component and with the same file name.
 
 ```php
 public function render(): void
@@ -79,9 +79,9 @@ Use in a template:
 Flash Messages
 ==============
 
-A component has its own storage of flash messages independent of the presenter. These messages inform about the result of operations which are **followed by redirection**.
+A component has its storage of flash messages independent of the presenter. These messages inform about the result of operations which are **followed by redirection**.
 
-Sending is done by the method [flashMessage |api:Nette\Application\UI\Control::flashMessage()]. The first parameter is the message's text and the second (optional) parameter is its type (error, warning, info, etc.). The method `flashMessage()` returns an instance of flash message to which you can pass information.
+Sending is done by the method [flashMessage |api:Nette\Application\UI\Control::flashMessage()]. The first parameter is the message's text and the second (optional) parameter is its type (error, warning, info, etc.). The method `flashMessage()` returns an instance of a flash message to which you can pass information.
 
 Example:
 
@@ -97,12 +97,12 @@ public function deleteFormSubmitted(Nette\Application\UI\Form $form): void
 }
 ```
 
-Template receives this messages automatically in variable `$flashes`. This variable contains an array of objects (`stdClass`) which contains properties `message`, `type` and can contain extra information mentioned above.
+Template receives these messages automatically in variable `$flashes`. This variable contains an array of objects (`stdClass`) which contains properties `message`, `type` and can contain extra information mentioned above.
 
 Example:
 ```php
 {foreach $flashes as $flash}
-	<div class="flash {$flash->type}">{$flash->message}</div>
+   <div class="flash {$flash->type}">{$flash->message}</div>
 {/foreach}
 ```
 
@@ -112,9 +112,9 @@ If `flashMessage()` is saved and redirection occurs, the same parameter `$flashe
 Signal (subrequest)
 ===================
 
-A signal (subrequest) is a communication with the server under the level of normal view. Signals are actions without a change of view. Only a presenter can change the view therefore components work only with signals. `$component->link()` links to a signal, `$presenter->link()` usually links to a view (unless an exclamation mark is used - `$presenter->link('signal!')`). But a component can call `$component->presenter->link('view')`.
+A signal (subrequest) is a communication with the server under the level of normal view. Signals are actions without a change of view. Only a presenter can change the view, therefore, components work only with signals. `$component->link()` links to a signal, `$presenter->link()` usually links to a view (unless an exclamation mark is used - `$presenter->link('signal!')`). But a component can call `$component->presenter->link('view')`.
 
-A signal causes a page reload like the original request (with the exception of AJAX) and invokes the method `signalReceived($signal)` whose default implementation in class `Nette\Application\UI\Component` tries to call a method composed of the words `handle{Signal}`. Further processing relies on the given object. Objects which are descendants of `Component` (i.e. `Control` and `Presenter`) try to call `handle{Signal}` with relevant parameters.
+A signal causes a page to reload like the original request (except for AJAX) and invokes the method `signalReceived($signal)` whose default implementation in class `Nette\Application\UI\Component` tries to call a method composed of the words `handle{Signal}`. Further processing relies on the given object. Objects which are descendants of `Component` (i.e. `Control` and `Presenter`) try to call `handle{Signal}` with relevant parameters.
 
 In other words: the definition of the method `handle{Signal}` is taken and all parameters which were received in the request are matched with the method's parameters. It means that the parameter `id` from the URL is matched to the method's parameter `$id`, `something` to `$something` and so on. And if the method doesn't exist, the method `signalReceived` throws [an exception |api:Nette\Application\UI\BadSignalException].
 
@@ -132,14 +132,14 @@ public function handleClick(int $x, int $y): void
 ```
 
 .[note]
-Signal can be received by any component, presenter of object which implements interface `ISignalReceiver` if it's connected to component tree.
+A signal can be received by any component, presenter or an object which implements interface `ISignalReceiver` if it's connected to the component tree.
 
-The main receivers of signals are `Presenters` and visual components extending `Control`. A signal is a sign for an object that it has to do something - poll counts in a vote from user, box with news has to unfold, form was sent and has to process data and so on.
+The main receivers of signals are `Presenters` and visual components extending `Control`. A signal is a sign for an object that it has to do something - poll counts in a vote from the user, a box with news has to unfold, a form was sent and has to process data and so on.
 
 .[note]
-Signal is always called on current presenter and view therefore it is impossible to point it elsewhere.
+A signal is always called on the current presenter and view, therefore, it is impossible to point it elsewhere.
 
-The URL for the signal is created using the method [Component::link() |api:Nette\Application\UI\Component::link()]. As parameter `$destination` we pass string `{signal}!` and as `$args` an array of arguments which we want to pass to the signal handler. Signal parameters are attached to the URL of the current presenter/view. **The parameter `?do` in the URL determines the signal called.**
+The URL for the signal is created using the method [Component::link() |api:Nette\Application\UI\Component::link()]. As parameter `$destination` we pass the string `{signal}!` and as `$args` an array of arguments which we want to pass to the signal handler. Signal parameters are attached to the URL of the current presenter/view. **The parameter `?do` in the URL determines the signal called.**
 
 Its format is `{signal}` or `{signalReceiver}-{signal}`. `{signalReceiver}` is the name of the component in the presenter. This is why hyphen (inaccurately dash) can't be present in the name of components - it is used to divide the name of the component and signal, but it's possible to compose several components.
 
@@ -172,7 +172,7 @@ Invalidation and Snippets
 
 During the processing of a signal changes can occur which require re-rendering of a component. These methods takes care of this: [redrawControl()|api:Nette\Application\UI\Control::redrawControl()] and [isControlInvalid()|api:Nette\Application\UI\Control::isControlInvalid()]. They are basic elements of using AJAX with Nette.
 
-Nette also offers even higher granularity of validity, than only at the component level, with use of [snippets |ajax].
+Nette also offers even higher granularity of validity, than only at the component level, with the use of [snippets |ajax].
 
 Snippets can be invalidated one by one (any component can have as many snippets as needed). If the whole component is invalidated than each of its snippets is invalidated too. A component is considered invalid if any of its children (components) is invalid.
 
@@ -202,7 +202,7 @@ Never trust persistent parameters blindly because they can be faked easily (by o
 Components with Dependencies
 ============================
 
-When our component needs some things to work, like `PollControl` needs `PollManager` to manage voting and save polls, it can be done by [injecting these dependencies |dependency-injection]  into the constructor:
+When our component needs some things to work, like `PollControl` needs `PollManager` to manage the voting and save polls, it can be done by [injecting these dependencies |dependency-injection]  into the constructor:
 
 ```php
 class PollControl extends Control
@@ -227,7 +227,7 @@ class PollControl extends Control
 }
 ```
 
-OK, but how is the `PollManager` put into the `PollControl`'s constructor? To do that, we need to write a factory class that will create instance of our component. This factory is a service, so we will register it as service to the DI container:
+OK, but how is the `PollManager` put into the `PollControl`'s constructor? To do that, we need to write a factory class that will create an instance of our component. This factory is a service, so we will register it as service to the DI container:
 
 ```php
 class PollControlFactory
@@ -290,20 +290,20 @@ services:
 	- IPollControlFactory
 ```
 
-and usage in presenter is same as usage of previous factory, we will get the interface by DI and use it as factory.
+and usage in presenter is the same as the usage of the previous factory, we will get the interface by DI and use it as a factory.
 
 That's all. Nette internally implements this interface and injects it to our presenter, where we can use it. It also magically passes our parameter `$pollId` and instance of class `App\Model\PollManager` into our component.
 
-Further usage of components in context of DI is [discussed here | di-usage#components].
+Further usage of components in the context of DI is [discussed here | di-usage#components].
 
 Advanced Use of Components
 ==========================
 
 Components are mostly renderable. But also unrenderable components exist. Some components can have descendants some not. Nette Framework introduces several classes and interfaces for all these types of components.
 
-Object inheritance allows us to have a hierarchic structure of classes like in real world. We can create new classes by extending. These extended classes are descendants of the original class and inherit its parameters and methods. Extended class can add its own parameters and methods to the inherited ones.
+Object inheritance allows us to have a hierarchic structure of classes like in the real world. We can create new classes by extending. These extended classes are descendants of the original class and inherit its parameters and methods. An extended class can add its parameters and methods to the inherited ones.
 
-Knowledge class hierarchy is required for proper understanding how things work.
+Knowledge class hierarchy is required for a proper understanding of how things work.
 
 ```
 Nette\ComponentModel\Component  { IComponent }
@@ -337,7 +337,7 @@ Nette\ComponentModel\Component .{toc: Component}
 Nette\ComponentModel\IContainer .{toc: IContainer}
 --------------------------------------------------
 
-Parent components implement not just `IComponent` but also [api:Nette\ComponentModel\IContainer]. Interface which contains methods for adding, removing, getting and iteration over components. Such components can create hierarchy - presenters can contain forms and these forms can contain form inputs. Whole tree hierarchy of components is created by branches of `IContainer` objects and `IComponent` leafs.
+Parent components implement not just `IComponent` but also [api:Nette\ComponentModel\IContainer]. The interface which contains methods for adding, removing, getting and iteration over components. Such components can create a hierarchy - presenters can contain forms and these forms can contain form inputs. Whole tree hierarchy of components is created by branches of `IContainer` objects and `IComponent` leaves.
 
 
 Nette\ComponentModel\Container .{toc: Container}
@@ -345,15 +345,15 @@ Nette\ComponentModel\Container .{toc: Container}
 
 [api:Nette\ComponentModel\Container] is a standard implementation of `IContainer` interface. It is an ancestor of for example form or classes `Control` and `Presenter`.
 
-It offers methods for correct adding, getting and removing objects and of course iteration over its contents. Attempt to call undefined child causes invoking of factory [createComponent($name)|api:Nette\ComponentModel\Container::createComponent()]. Method `createComponent($name)` invokes method `createComponent<component name>` in current component and it passes name of the component as a parameter. Created component is then passed to current component as its child. We call theese component factories, they can be implemented in classes inherited from `Container`.
+It offers methods for correct adding, getting and removing objects and of course iteration over its contents. Attempt to call undefined child causes invoking of factory [createComponent($name)|api:Nette\ComponentModel\Container::createComponent()]. Method `createComponent($name)` invokes method `createComponent<component name>` in current component and it passes name of the component as a parameter. The created component is then passed to the current component as its child. We call these component factories, they can be implemented in classes inherited from `Container`.
 
 
 Nette\Application\UI\Component .{toc: Component}
 ------------------------------------------------
 
-Class [api:Nette\Application\UI\Component] is an ancestor of all components used in presenter. Components in presenter are object which are kept by presenter during its [life cycle |presenters#life-cycle-of-presenter].
+Class [api:Nette\Application\UI\Component] is an ancestor of all components used in the presenter. Components in presenter are objects which are kept by the presenter during its [life cycle |presenters#life-cycle-of-presenter].
 
-They have ability to influence each other, save their states into URL and respond to user commands (signals) and does not have to be renderable.
+They can influence each other, save their states into URL and respond to user commands (signals) and does not have to be renderable.
 
 
 Nette\Application\UI\Control .{toc: Control}
@@ -361,18 +361,18 @@ Nette\Application\UI\Control .{toc: Control}
 
 [Control |api:Nette\Application\UI\Control] is a renderable component. It is a reusable part of web application which is this whole chapter about. When talking about components this is the class we usually have on mind. It remembers which it's part should be rendered in [AJAX request |ajax#invalidation], which [we've already talked about|#invalidation and snippets].
 
-`Control` isn't representing visual sector of webpage, but it's logical part. It is possible to render it repeatedly, conditionally and every time with different template.
+`Control` isn't representing the visual sector of the webpage, but it's a logical part. It is possible to render it repeatedly, conditionally and every time with a different template.
 
 
 Component Tree
 --------------
 
-The same component can be rendered more than once on page if given different names (this can be done dynamically). Parent can be presenter, component or other object implementing `IContainer`.
+The same component can be rendered more than once on a page if given different names (this can be done dynamically). A parent can be presenter, component or other object implementing `IContainer`.
 
-Hierarchy can look like following:
+Hierarchy can look like the following:
 
 ```
-Nette\Application\UI\Presenter { root of tree of components is always a presenter }
+Nette\Application\UI\Presenter { root of the tree of components is always a presenter }
   |
   --Nette\Application\UI\Control { implements IContainer => can be parent }
      |
@@ -389,7 +389,7 @@ Nette\Application\UI\Presenter { root of tree of components is always a presente
 Delayed Composition
 -------------------
 
-Component model in Nette offers very dynamical tree workflow (components can be removed, added, moved). It would be a mistake to rely on knowing parent (in constructor) when the component is created. In most cases, parent is not not known when the component is created.
+Component model in Nette offers very dynamical tree workflow (components can be removed, added, moved). It would be a mistake to rely on knowing the parent (in a constructor) when the component is created. In most cases, the parent is not known when the component is created.
 
 ```php
 $control = new NewsControl;
@@ -401,9 +401,9 @@ $parent->addComponent($control, 'shortNews');
 Monitoring of Ancestors
 -----------------------
 
-How to find out when was component added to presenter's tree? Watching the change of parent is not enough because a parent of parent might have been added to presenter. Method [monitor($type, $attached, $detached)|api:Nette\ComponentModel\Component::monitor()] is here to help. Every component can monitor any number of classes and interfaces. Adding or removing is reported by invoking callback `$attached` (`$detached` respectivelly), where the object of monitored class is passed.
+How to find out when was component added to presenter's tree? Watching the change of parent is not enough because a parent of parent might have been added to the presenter. Method [monitor($type, $attached, $detached)|api:Nette\ComponentModel\Component::monitor()] is here to help. Every component can monitor any number of classes and interfaces. Adding or removing is reported by invoking callback `$attached` (`$detached` respectively), where the object of the monitored class is passed.
 
-An example: Class `UploadControl`, representing form element for uploading files in Nette Forms, has to set form's attribute `enctype` to value `multipart/form-data`. But in the time of the creation of the object it does not have to be attached to any form. When to modify the form? The solution is simple - we create a request for monitoring in the constructor:
+An example: Class `UploadControl`, representing form element for uploading files in Nette Forms, has to set form's attribute `enctype` to value `multipart/form-data`. But in the time of the creation of the object, it does not have to be attached to any form. When to modify the form? The solution is simple - we create a request for monitoring in the constructor:
 
 ```php
 class UploadControl extends Nette\Forms\Controls\BaseControl
@@ -420,7 +420,7 @@ class UploadControl extends Nette\Forms\Controls\BaseControl
 }
 ```
 
-and when the form is available callback is called. (Formely methods `attached` or `detached` was used instead).
+and when the form is available callback is called. (Formerly methods `attached` or `detached` was used instead).
 
 
 Iterating over Children

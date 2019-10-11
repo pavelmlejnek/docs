@@ -12,7 +12,7 @@ There are several possibilities of injecting dependencies to presenters, compone
 How To Get Dependencies?
 ========================
 
-Dependencies can be injected to the application classes in one of the following ways:
+Dependencies can be injected into the application classes in one of the following ways:
 
 * through the class constructor,
 * via setter or a member variable,
@@ -46,7 +46,7 @@ The `MyService` class declares that an instance of `AnotherService` class must b
 Passing by Setter or a Public Variable
 --------------------------------------
 
-These dependencies are passed after the object has been created. Take a look at the example of passing dependency by a setter method. The type of the dependency is given in the Type Hint:
+These dependencies are passed after the object has been created. Take a look at the example of passing dependency by a setter method. The type of dependency is given in the Type Hint:
 
 ```php
 class MyService
@@ -61,7 +61,7 @@ class MyService
 }
 ```
 
-These dependencies can be passed only after the object has been created. This method is suitable only for non-mandatory dependencies, because there is no guarantee that the dependencies will be passed to the object.
+These dependencies can be passed only after the object has been created. This method is suitable only for non-mandatory dependencies because there is no guarantee that the dependencies will be passed to the object.
 
 Passing by a public variable works in a very similar way:
 
@@ -80,7 +80,7 @@ So we will not deal further with this.
 Passing by an `inject*` Method
 ------------------------------
 
-This method is specific for the DI Container in Nette Framework. It is a special case of setter method which starts with an `inject*` prefix.
+This method is specific for the DI Container in Nette Framework. It is a special case of the setter method which starts with an `inject*` prefix.
 
 ```php
 class MyService
@@ -97,7 +97,7 @@ class MyService
 
 The class can contain multiple `inject*` methods, each with multiple parameters and a unique name.
 
-Nette is able to find these methods in presenters and automatically call them with proper parameters. This behaviour could be also enabled in services in configuration file. This will be explained later.
+Nette is able to find these methods in presenters and automatically call them with proper parameters. This behaviour could be also enabled in services in a configuration file. This will be explained later.
 
 `@inject` Annotations
 ---------------------
@@ -125,7 +125,7 @@ Constructor passing and passing optional dependencies by setters are available f
 
 The one thing that all these methods have in common, is that [autowiring |di-configuration#autowiring] is only available for objects created by Nette DI Container or one of the factories in Nette. When we create the object by calling `new`, we have to pass the dependencies manually.
 
-Lets have a look at the examples and preferred method of dependency injection.
+Let's have a look at the examples and preferred method of dependency injection.
 
 Presenters
 ----------
@@ -167,14 +167,14 @@ The preferred way of passing dependencies for presenters is using the constructo
 
 We can also use `@inject` annotation for both cases, but we have to keep in mind that this breaks encapsulation.
 
-Passing dependencies to parent presenters through the constructor is not recommended, since it complicates the constructor signature when using the presenter inheritance: you have to get and pass dependencies to all parent presenter classes.
+Passing dependencies to parent presenters through the constructor is not recommended since it complicates the constructor signature when using the presenter inheritance: you have to get and pass dependencies to all parent presenter classes.
 
 Components
 ----------
 
 Components are usually instantiated directly in the code of presenter, or through the application-specific factories. In these cases, Nette cannot automatically inject the dependencies and you cannot use `inject*` methods or variables with the `@inject` annotations.
 
-Lets consider we have the following component:
+Let's consider we have the following component:
 
 ```php
 class MyControl extends Nette\Application\UI\Control
@@ -249,7 +249,7 @@ class MySecondControl extends Nette\Application\UI\Control
 }
 ```
 
-Because we usually instantiate the components by hand, the preferred way of dependency injection depends on whether the dependency is mandatory or optional. Constructor should be used for mandatory dependencies and setter for optional ones.
+Because we usually instantiate the components by hand, the preferred way of dependency injection depends on whether the dependency is mandatory or optional. A constructor should be used for mandatory dependencies and setter for optional ones.
 
 .[caution]
 If we use the constructor for dependency passing, we must not forget to call the constructor from the parent class: `parent::__construct(...)`!
@@ -257,7 +257,7 @@ If we use the constructor for dependency passing, we must not forget to call the
 Services
 --------
 
-Services are registered in the DI container and dependencies are therefore automatically passed. We can declare dependencies only in constructor, unless we provide additional configuration:
+Services are registered in the DI container and dependencies are therefore automatically passed. We can declare dependencies only in the constructor unless we provide additional configuration:
 
 ```neon
 services:
@@ -374,7 +374,7 @@ class ImagePresenter extends Nette\Application\UI\Presenter
 
 The string from the configuration will be passed as the first parameter of the constructor, the remaining parameters will be auto-wired.
 
-However, you have to be careful when designing presenters. All application logic should be in services, not in presenters. The need of additional presenter configuration is often a sign of a bad decomposition of the challenge.
+However, you have to be careful when designing presenters. All application logic should be in services, not in presenters. The need for additional presenter configuration is often a sign of a bad decomposition of the challenge.
 
 
 Component Factory
@@ -395,7 +395,7 @@ interface IUserTableFactory
 }
 ```
 
-The `create` method will instantiate an `UserTable` component with the following definition:
+The `create` method will instantiate a `UserTable` component with the following definition:
 
 ```php
 namespace App\Components;

@@ -10,7 +10,7 @@ All examples assume the following class alias is defined:
 use Nette\Utils\DateTime;
 ```
 
-Let´s take a look how it´s simple.
+Let´s take a look at how it´s simple.
 
 ```php
 $netteRelease = DateTime::from('2006-01-23 10:54:00'); // create from string

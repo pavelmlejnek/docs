@@ -32,9 +32,9 @@ echo $book->title;
 echo $book->author_id;
 ```
 
-Let's take a look at common use-case. You need to fetch books and their authors. It is a common 1:N relationship. The often used solution is to fetch data using one SQL query with table joins. The second possibility is to fetch data separately, run one query for getting books and then get an author for each book by another query (e.g. in your foreach cycle). This could be easily optimized to run only two queries, one for the books, and another for the needed authors - and that is exactly the way how Nette Database Explorer does it.
+Let's take a look at common use-case. You need to fetch books and their authors. It is a common 1:N relationship. The often-used solution is to fetch data using one SQL query with table joins. The second possibility is to fetch data separately, run one query for getting books and then get an author for each book by another query (e.g. in your foreach cycle). This could be easily optimized to run only two queries, one for the books, and another for the needed authors - and that is exactly the way how Nette Database Explorer does it.
 
-In the examples below, we will work with the database schema in the figure. There are OneHasMany (1:N) links (author of book `author_id` and possible translator `translator_id`, which may be `null`) and ManyHasMany (M:N) link between book and its tags.
+In the examples below, we will work with the database schema in the figure. There are OneHasMany (1:N) links (author of book `author_id` and possible translator `translator_id`, which may be `null`) and ManyHasMany (M:N) link between the book and its tags.
 
 [An example, including a schema, is found on GitHub |https://github.com/nette/examples/tree/master/Books].
 
@@ -131,9 +131,9 @@ $table->where('NOT id ?', $ids);
 Filtering by Another Table Value .[#joining-key]
 ------------------------------------------------
 
-Quite often you need filter results by some condition which involves another database table. These types of condition require table join. However, you don't need to write them anymore.
+Quite often you need to filter results by some condition which involves another database table. These types of conditions require table join. However, you don't need to write them anymore.
 
-Let's say you need to get all books whose author's name is 'Jon'. All you need to write is the joining key of the relation and the column name in the joined table. The joining key is derived from the column which refers to the table you want to join. In our example (see the db schema) it is the column `author_id`, and it is sufficient to use just the first part of it - `author` (the `_id` suffix can be omitted). `name` is a column in the `author` table we would like to use. A condition for book translator (which is connected by `translator_id` column) can be created just as easily.
+Let's say, you need to get all books whose author's name is 'Jon'. All you need to write is the joining key of the relation and the column name in the joined table. The joining key is derived from the column which refers to the table you want to join. In our example (see the db schema) it is the column `author_id`, and it is sufficient to use just the first part of it - `author` (the `_id` suffix can be omitted). `name` is a column in the `author` table we would like to use. A condition for book translator (which is connected by `translator_id` column) can be created just as easily.
 
 ```php
 $books = $context->table('book');
@@ -141,9 +141,9 @@ $books->where('author.name LIKE ?', '%Jon%');
 $books->where('translator.name', 'David Grudl');
 ```
 
-The joining key logic is driven by implementation of [IConventions |api:Nette\Database\IConventions]. We encourage to use [DiscoveredConventions |api:Nette\Database\Conventions\DiscoveredConventions], which analyzes your foreign keys and allows you to easily work with these relationships.
+The joining key logic is driven by the implementation of [IConventions |api:Nette\Database\IConventions]. We encourage to use [DiscoveredConventions |api:Nette\Database\Conventions\DiscoveredConventions], which analyze your foreign keys and allows you to easily work with these relationships.
 
-The relationship between book and its author is 1:N. The reverse relationship is also possible. We call it **backjoin**. Take a look at another example. We would like to fetch all authors, who have written more than 3 books. To make the join reverse we use `:` (colon). Colon means that the joined relationship means hasMany (and it's quite logical too, as two dots are more than one dot). Unfortunately, the Selection class isn't smart enough, so we have to help with the aggregation and provide a `GROUP BY` statement, also the condition has to be written in form of `HAVING` statement.
+The relationship between the book and its author is 1:N. The reverse relationship is also possible. We call it **backjoin**. Take a look at another example. We would like to fetch all authors, who have written more than 3 books. To make the join reverse we use `:` (colon). Colon means that the joined relationship means hasMany (and it's quite logical too, as two dots are more than one dot). Unfortunately, the Selection class isn't smart enough, so we have to help with the aggregation and provide a `GROUP BY` statement, also the condition has to be written in form of `HAVING` statement.
 
 ```php
 $authors = $context->table('author');
@@ -151,7 +151,7 @@ $authors->group('author.id')
 	->having('COUNT(:book.id) > 3');
 ```
 
-You may have noticed that the joining expression refers to the book, but it's not clear, whether we are joining through `author_id` or `translator_id`. In the example above, Selection joins through the `author_id` column, because a match with the source table has been found - the `author` table. If there was no such a match and there would be more possibilities, Nette would throw [AmbiguousReferenceKeyException |api:Nette\Database\Conventions\AmbiguousReferenceKeyException].
+You may have noticed that the joining expression refers to the book, but it's not clear, whether we are joining through `author_id` or `translator_id`. In the example above Selection joins through the `author_id` column, because a match with the source table has been found - the `author` table. If there was no such a match and there would be more possibilities, Nette would throw [AmbiguousReferenceKeyException |api:Nette\Database\Conventions\AmbiguousReferenceKeyException].
 
 To make a join through `translator_id` column, provide an optional parameter within the joining expression.
 
@@ -191,7 +191,7 @@ The `count()` method without any specified parameters selects all records and re
 Escaping & Quoting
 ==================
 
-Database Explorer is smart and escape parameters and quotes identificators for you. These basic rules need to be followed, though:
+Database Explorer is smart and escapes parameters and quotes identificators for you. These basic rules need to be followed, though:
 
 - keywords, functions, procedures must be uppercase
 - columns and tables must be lowercase
@@ -212,7 +212,7 @@ Database Explorer is smart and escape parameters and quotes identificators for y
 ```
 
 .[warning]
-Wrong usage can produce security holes
+The wrong usage could produce security holes
 
 
 
@@ -241,7 +241,7 @@ $row = $context->table('author')->insert([
 // INSERT INTO `author` (`name`, `born`) VALUES ('Ramsay Snow', null)
 ```
 
-If primary key is defined on the table, an ActiveRow object containing the inserted row is returned.
+If primary key is defined on a table, an ActiveRow object containing the inserted row is returned.
 
 Multiple insert:
 
@@ -291,7 +291,7 @@ $book = $context->table('book')->get(1);
 $book->ref('author', 'author_id');
 ```
 
-In example above we fetch related author entry from `author` table, the author primary key is searched by `book.author_id` column. Ref() method returns ActiveRow instance or null if there is no appropriate entry. Returned row is an instance of ActiveRow so we can work with it the same way as with the book entry.
+In the example above we fetch related author entry from `author` table, the author primary key is searched by `book.author_id` column. Ref() method returns ActiveRow instance or null if there is no appropriate entry. The returned row is an instance of ActiveRow so we can work with it the same way as with the book entry.
 
 ```php
 $author = $book->ref('author', 'author_id');
@@ -308,9 +308,9 @@ Book also has one translator, so getting translator name is quite easy.
 $book->ref('author', 'translator_id')->name
 ```
 
-All of this is fine, but it's somewhat cumbersome, don't you think? Database Explorer already contains the foreign keys definitions so why not use them automatically? Let's do that!
+All of this is fine, but it's somewhat cumbersome, don't you think? Database Explorer already contains the definitions of the foreign keys so why not use them automatically? Let's do that!
 
-If we call property, which does not exist, ActiveRow tries to resolve the calling property name as 'has one' relation. Getting this property is the same as calling ref() method with just one argument. We will call the only argument the **key**. Key will be resolved to particular foreign key relation. The passed key is matched against row columns, and if it matches, foreign key defined on the matched column is used for getting data from related target table. See example:
+If we call property, which does not exist, ActiveRow tries to resolve the calling property name as 'has one' relation. Getting this property is the same as calling ref() method with just one argument. We will call the only argument the **key**. Key will be resolved to a particular foreign key relation. The passed key is matched against row columns, and if it matches, foreign key defined on the matched column is used for getting data from the related target table. See example:
 
 ```php
 $book->author->name;
@@ -318,7 +318,7 @@ $book->author->name;
 $book->ref('author')->name;
 ```
 
-The ActiveRow instance has no author column. All book columns are searched for a match with *key*. Matching in this case means the column name has to contain the key. So in the example above, the `author_id` column contains string 'author' and is therefore matched by 'author' key. If you want to get the book translator, just can use e.g. 'translator' as a key,  because 'translator' key will match the `translator_id` column. You can find more about the key matching logic in [Joining expressions |#joining-key] chapter.
+The ActiveRow instance has no author column. All book columns are searched for a match with *key*. Matching, in this case, means the column name has to contain the key. So in the example above, the `author_id` column contains string 'author' and is therefore matched by 'author' key. If you want to get the book translator, just can use e.g. 'translator' as a key,  because 'translator' key will match the `translator_id` column. You can find more about the key matching logic in [Joining expressions |#joining-key] chapter.
 
 ```php
 echo $book->title . ': ';
@@ -368,7 +368,7 @@ foreach ($author->related('book.translator_id') as $book) {
 }
 ```
 
-Method `related()` method accepts full join description passed as two arguments or as one argument joined by dot. The first argument is the target table, the second is the target column.
+Method `related()` method accepts a full join description passed as two arguments or as one argument joined by a dot. The first argument is the target table, the second is the target column.
 
 ```php
 $author->related('book.translator_id');
@@ -378,7 +378,7 @@ $author->related('book', 'translator_id');
 
 You can use Nette Database Explorer heuristics based on foreign keys and provide only **key** argument. Key will be matched against all foreign keys pointing into the current table (`author` table). If there is a match, Nette Database Explorer will use this foreign key, otherwise it will throw [Nette\InvalidArgumentException|api:Nette\InvalidArgumentException] or [AmbiguousReferenceKeyException |api:Nette\Database\Conventions\AmbiguousReferenceKeyException]. You can find more about the key matching logic in [Joining expressions |#joining-key] chapter.
 
-Of course you can call related methods for all fetched authors, Nette Database Explorer will again fetch the appropriate books at once.
+Of course, you can call related methods for all fetched authors, Nette Database Explorer will again fetch the appropriate books at once.
 
 ```php
 $authors = $context->table('author');
@@ -390,7 +390,7 @@ foreach ($authors as $author) {
 }
 ```
 
-Example above will run only two queries:
+The example above will run only two queries:
 
 ```sql
 SELECT * FROM `author`;

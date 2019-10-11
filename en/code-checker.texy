@@ -7,7 +7,7 @@ The tool called [Code-Checker |https://github.com/nette/code-checker] checks and
 Installation
 ============
 
-Code Checker should be installed as project, don't use it as dependecy.
+Code Checker should be installed as a project, don't use it as dependency.
 
 ```
 composer create-project nette/code-checker
@@ -29,7 +29,7 @@ Options:
 	--strict-types        checks whether PHP 7.0 directive strict_types is enabled
 ```
 
-Without parameters, it checks the current working directory in a read-only mode, with `-f` parameter it fixes files.
+Without parameters, it checks the current working directory in a read-only mode, with the `-f` parameter it fixes files.
 
 Before you get to know the tool, be sure to backup your files first.
 

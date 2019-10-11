@@ -10,7 +10,7 @@ Stop solving repetitive tasks and getting distracted with details that make prog
 - rock-solid protection against known vulnerabilities
 - HTML5 and AJAX support, SEO friendly
 - well written documentation and an active open source community
-- mature and clean object oriented design leveraging the latest PHP features
+- mature and clean object-oriented design leveraging the latest PHP features
 - best-practice solutions that are encouraged, but not enforced
 </div>
 
@@ -23,7 +23,7 @@ Why Nette Framework?
 [* ecommercial.png >]
 **Nette Framework lets you focus on the creative part of being a developer**. It's built to be extremely usable, friendly and a joy to use. Its comprehensible yet efficient syntax, a cutting edge debugger and industry-leading security features let you write e-commerce sites, wikis, blogs, CMS or anything you can imagine faster and better than ever.
 
-Nette Framework is [used by major companies |https://builtwith.nette.org], such as T-Systems, GE Money, Mladá fronta, VLTAVA-LABE-PRESS, Internet Info, DHL, Logio, ESET or Actum. It currently propels the website of the former president of the Czech Republic Václav Klaus. In the [poll |https://spreadsheets.google.com/viewanalytics?formkey=dEl1ZDJhbk1hWEFLbU43Skl0eDVDSnc6MQ#chart#4] held by Zdroják it was awarded the prize of The most popular and the most widely used framework in the Czech Republic.
+Nette Framework is [used by major companies |https://builtwith.nette.org], such as T-Systems, GE Money, Mladá fronta, VLTAVA-LABE-PRESS, Internet Info, DHL, Logio, ESET or Actum. It currently propels the website of the former president of the Czech Republic Václav Klaus. In the [poll |https://spreadsheets.google.com/viewanalytics?formkey=dEl1ZDJhbk1hWEFLbU43Skl0eDVDSnc6MQ#chart#4] held by Zdroják, it was awarded the prize of the most popular and the most widely used framework in the Czech Republic.
 
 Learning Nette Framework will guarantee no shortage of interesting job offers.
 
@@ -54,7 +54,7 @@ Get Involved!
 -------------
 
 [* communication-80x80-r9-r1-c1-s1.png >]
-Any contribution to the development is greatly appreciated. You are welcome to share a word of mouth, place an [icon |www:logo] on your website, or [support the development |www:donate] financially. Thank you ♥.
+Any contribution to development is greatly appreciated. You are welcome to share a word of mouth, place an [icon |www:logo] on your website, or [support the development |www:donate] financially. Thank you ♥.
 
 Sharing your knowledge is just as valuable -- you may write an article, capture a screencast for [Planette |pla:], or publish an [extension |https://componette.com] that you created. You are also more than welcome to help with [writing and translating documentation |www:writing] which helps other people get started.
 

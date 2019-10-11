@@ -4,7 +4,7 @@ Getting Started
 .[perex]
 Meet Nette Framework and create your first application.
 
-The very first thing you should do is check if your server satisfies the [requirements|/requirements] of Nette Framework. It should most likely be fine, but just to be sure we won't start with broken environment.
+The very first thing you should do is check if your server satisfies the [requirements|/requirements] of Nette Framework. It should most likely be fine, but just to be sure we won't start with a broken environment.
 
 You can download Nette Framework manually, but the recommended way of starting a new project is using [Composer |/composer]. If you don't know Composer, you should definitely start with that. It's really simple and useful tool, check out [their documentation |http://getcomposer.org/doc/].
 
@@ -17,7 +17,7 @@ composer create-project nette/web-project nette-blog
 Web Project will be downloaded into `nette-blog` directory.
 
 .[note]
-If you couldn't use Composer, [download |https://github.com/nette/web-project/archive/preloaded.zip] and extract the archive and copy it to root directory of web server and rename to `nette-blog`. The entire framework is located in the `vendor` folder.
+If you couldn't use Composer, [download |https://github.com/nette/web-project/archive/preloaded.zip] and extract the archive and copy it to root directory of the webserver and rename to `nette-blog`. The entire framework is located in the `vendor` folder.
 
 If you're developing on Mac OS X or Linux (or any other Unix based system), you need to [configure write privileges|/troubleshooting#Setting directory permissions] to the web server.
 
@@ -70,7 +70,7 @@ The most important directory for you is `app/`. You can find `Bootstrap.php` fil
 Cleanup
 =======
 
-The Web Project contains welcome page, which we can remove - feel free to delete the `app/presenters/templates/Homepage/default.latte` file and replace it with text "Hello world!".
+The Web Project contains welcome page, which we can remove - feel free to delete the `app/presenters/templates/Homepage/default.latte` file and replace it with the text "Hello world!".
 
 
 [* qs-hello.png *]
@@ -79,7 +79,7 @@ The Web Project contains welcome page, which we can remove - feel free to delete
 Tracy (debugger)
 ================
 
-An extremely important tool for development is [a debugger called Tracy |tracy:]. Try to make some errors in your `app/presenters/HomepagePresenter.php` file (e.g. remove a curly bracket from the definition of class HomepagePresenter) and see what happens. A red-screen page will pop up with understandable error description.
+An extremely important tool for development is [a debugger called Tracy |tracy:]. Try to make some errors in your `app/presenters/HomepagePresenter.php` file (e.g. remove a curly bracket from the definition of class HomepagePresenter) and see what happens. A red-screen page will pop up with the understandable error description.
 
 [* qs-tracy.png .(debugger screen) *]
 
@@ -87,18 +87,18 @@ Tracy will significantly help you while hunting down errors. Also note the float
 
 [* qs-tracybar.png *]
 
-In the production mode, Tracy is, of course, disabled and does not reveal any sensitive information. All error are saved into `log/` directory instead. Just try it out. In `app/Bootstrap.php`, find the following piece of code, uncomment the line and change the method call parameter to `false`, so it looks like this:
+In the production mode, Tracy is, of course, disabled and does not reveal any sensitive information. All errors are saved into `log/` directory instead. Just try it out. In `app/Bootstrap.php`, find the following piece of code, uncomment the line and change the method call parameter to `false`, so it looks like this:
 
 ```php
 $configurator->setDebugMode(false);
 $configurator->enableTracy(__DIR__ . '/../log');
 ```
 
-After refreshing the web page, the red-screen page will be replaced with user-friendly message:
+After refreshing the web page, the red-screen page will be replaced with the user-friendly message:
 
 [* qs-fatal.png .(error screen) *]
 
-Now look into the `log/` directory. You can find the error log there (in exception.log file) and also the page with error message (saved in an HTML file with name starting with `exception`).
+Now, look into the `log/` directory. You can find the error log there (in exception.log file) and also the page with the error message (saved in an HTML file with the name starting with `exception`).
 
 Comment line `// $configurator->setDebugMode(false);` again. Tracy automatically enables debug mode on `localhost` environment and disables it elsewhere.
 

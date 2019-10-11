@@ -5,14 +5,14 @@ Forms
 Nette Forms greatly facilitates creating and processing web forms. What it can really do?
 
 - validate sent data both client-side (JavaScript) and server-side
-- provide high level of security
+- provide a high level of security
 - multiple render modes
 - translations, i18n
 </div>
 
-Nette Framework puts a great effort to be safe and since forms are the most common user input, Nette forms are as good as impenetrable. All is maintained dynamically and transparently, nothing has to be set manually. Well-known vulnerabilities such as [Cross Site Scripting (XSS) |vulnerability-protection#cross-site-scripting-xss] and [Cross-Site Request Forgery (CSRF)|vulnerability-protection#cross-site-request-forgery-csrf] are filtered, as well as special control characters. All inputs are checked for UTF-8 validity. Every multiple-choice, select boxes and similar are checked for forged values upon validating. Sounds good? Let's try it out.
+Nette Framework puts a great effort to be safe and since forms are the most common user input, Nette forms are as good as impenetrable. Everything is maintained dynamically and transparently, nothing has to be set manually. Well-known vulnerabilities such as [Cross Site Scripting (XSS) |vulnerability-protection#cross-site-scripting-xss] and [Cross-Site Request Forgery (CSRF)|vulnerability-protection#cross-site-request-forgery-csrf] are filtered, as well as special control characters. All inputs are checked for UTF-8 validity. Every multiple-choice, select box and similar is checked for forged values upon validating. Sounds good? Let's try it out.
 
-With Nette Forms, you can diminish routine tasks like double validation on both server and client side. You can also avoid common mistakes and security issues.
+With Nette Forms, you can diminish routine tasks like double validation on both server and client-side. You can also avoid common mistakes and security issues.
 
 First Form
 ==========

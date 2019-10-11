@@ -38,7 +38,7 @@ echo Strings::upper('Hello world'); // HELLO WORLD
 firstUpper(string $s): string .[method]
 ---------------------------------------
 
-Converts the first character of a UTF-8 string to upper case and leaves the other characters unchanged.
+Converts the first character of a UTF-8 string to uppercase and leaves the other characters unchanged.
 
 ```php
 echo Strings::firstUpper('hello world'); // Hello world
@@ -58,7 +58,7 @@ echo Strings::firstLower('Hello world'); // hello world
 capitalize(string $s): string .[method]
 ---------------------------------------
 
-Converts the first character of every word of a UTF-8 string to upper case and the others to lower case.
+Converts the first character of every word of a UTF-8 string to uppercase and the others to lower case.
 
 ```php
 echo Strings::capitalize('Hello world'); // Hello World
@@ -84,7 +84,7 @@ Adjusts a UTF-8 string for usage in URL, i.e. removes all accents and replaces a
 echo Strings::webalize('žluťoučký kůň'); // zlutoucky-kun
 ```
 
-Other characters may be preserved as well, but they must be passed as second argument.
+Other characters may be preserved as well, but they must be passed as the second argument.
 
 ```php
 echo Strings::webalize('10. image_id', '._'); // 10.-image_id
@@ -100,7 +100,7 @@ echo Strings::webalize('Hello world', null, false); // Hello-world
 trim(string $s, string $charlist=null): string .[method]
 --------------------------------------------------------
 
-Removes all left and right side spaces (or the characters passed as second argument) from a UTF-8 encoded string.
+Removes all left and right side spaces (or the characters passed as the second argument) from a UTF-8 encoded string.
 
 ```php
 echo Strings::trim('  Hello  '); // 'Hello'
@@ -110,7 +110,7 @@ echo Strings::trim('  Hello  '); // 'Hello'
 truncate(string $s, int $maxLen, string $append=`'…'`): string .[method]
 ------------------------------------------------------------------------
 
-Truncates a UTF-8 string to given maximal length, while trying not to split whole words. Only if the string is truncated, an ellipsis (or something else set with third argument) is appended to the string.
+Truncates a UTF-8 string to given maximal length, while trying not to split whole words. Only if the string is truncated, an ellipsis (or something else set with the third argument) is appended to the string.
 
 ```php
 $text = 'Hello, how are you today?';
@@ -124,7 +124,7 @@ echo Strings::truncate($text, 20, '~'); // 'Hello, how are you~'
 indent(string $s, int $level=1, string $indentationChar=`"\t"`): string .[method]
 ---------------------------------------------------------------------------------
 
-Indents a multiline text from the left. Second argument sets how many indentation chars should be used, while the indent itself is the third argument (*tab* by default).
+Indents a multiline text from the left. The second argument sets how many indentation chars should be used, while the indent itself is the third argument (*tab* by default).
 
 ```php
 echo Strings::indent('Nette'); // '	Nette'
@@ -135,7 +135,7 @@ echo Strings::indent('Nette', 2, '+'); // '++Nette'
 padLeft(string $s, int $length, string $pad=`' '`): string .[method]
 --------------------------------------------------------------------
 
-Pads a UTF-8 string to given length by prepending the `$pad` string to the beginning.
+Pads a UTF-8 string to a given length by prepending the `$pad` string to the beginning.
 
 ```php
 echo Strings::padLeft('Nette', 6); // ' Nette'
@@ -147,7 +147,7 @@ echo Strings::padLeft(' Nette', 11, 'WOW'); // 'WOWWO Nette'
 padRight(string $s, int $length, string $pad=`' '`): string .[method]
 ---------------------------------------------------------------------
 
-Pads UTF-8 string to given length by appending the `$pad` string to the end.
+Pads a UTF-8 string to a given length by appending the `$pad` string to the end.
 
 ```php
 echo Strings::padRight('Nette', 6); // 'Nette '
@@ -159,7 +159,7 @@ echo Strings::padRight('Nette is ', 16, 'great'); // 'Nette is greatgr'
 substring(string $s, int $start, int $length=null): string .[method]
 --------------------------------------------------------------------
 
-Returns a part of UTF-8 string.
+Returns a part of an UTF-8 string.
 
 ```php
 echo Strings::substring('Nette is great', 0, 5); // 'Nette'
@@ -181,7 +181,7 @@ $unixLikeLines = Strings::normalizeNewLines($string);
 reverse(string $s): string .[method]
 ------------------------------------
 
-Reverse UTF-8 string.
+Reverse an UTF-8 string.
 
 ```php
 echo Strings::reverse('Nette'); // 'etteN'
@@ -214,7 +214,7 @@ Strings::startsWith($haystack, $needle); // true
 endsWith(string $haystack, string $needle): bool .[method]
 ----------------------------------------------------------
 
-Returns `true` if `$haystack` string end with `$needle`.
+Returns `true` if `$haystack` string ends with `$needle`.
 
 ```php
 $haystack = 'Ends';
@@ -262,7 +262,7 @@ echo Strings::findPrefix('Nette', 'is', 'great'); // ''
 before(string $haystack, string $needle, int $nth=1): ?string .[method]
 -----------------------------------------------------------------------
 
-Returns part of `$haystack` before `$nth` occurence of `$needle` or returns `null` if the needle was not found. Negative value means searching from the end.
+Returns part of `$haystack` before `$nth` occurrence of `$needle` or returns `null` if the needle was not found. A negative value means searching from the end.
 
 ```php
 echo Strings::before('Nette_is_great', '_', 1); // 'Nette'
@@ -278,7 +278,7 @@ Version 2 returns `false` instead of `null`.
 after(string $haystack, string $needle, int $nth=1): ?string .[method]
 ----------------------------------------------------------------------
 
-Returns part of `$haystack` after `$nth` occurence of `$needle` or returns `null` if the `$needle` was not found. Negative value of `$nth` means searching from the end.
+Returns part of `$haystack` after `$nth` occurrence of `$needle` or returns `null` if the `$needle` was not found. A negative value of `$nth` means searching from the end.
 
 ```php
 echo Strings::after('Nette_is_great', '_', 2); // 'great'
@@ -294,7 +294,7 @@ Version 2 returns `false` instead of `null`.
 indexOf(string $haystack, string $needle, int $nth=1): ?int .[method]
 ---------------------------------------------------------------------
 
-Returns position of `$nth` occurence of `$needle` in `$haystack` or `null` if the `$needle` was not found. Negative value of `$nth` means searching from the end.
+Returns position of `$nth` occurrence of `$needle` in `$haystack` or `null` if the `$needle` was not found. A negative value of `$nth` means searching from the end.
 
 ```php
 echo Strings::indexOf('abc abc abc', 'abc', 2); // 4
@@ -371,7 +371,7 @@ $res = Strings::split('One,  two,three', '~(,)\s*~');
 match(string $subject, string $pattern, int $flags=null, int $offset=0): array .[method]
 ----------------------------------------------------------------------------------------
 
-Checks if given string matches a regex pattern and returns an array with first found match and each subpattern. Argument `$flag` takes same arguments as function [php:preg_match].
+Checks if the given string matches a regex pattern and returns an array with the first found match and each subpattern. Argument `$flag` takes same arguments as function [php:preg_match].
 
 ```php
 list($res) = Strings::match('One,  two,three', '~[a-z]+~i'); // 'One'
@@ -401,7 +401,7 @@ $res = Strings::matchAll('One,  two,three', '~\d+~'); // []
 replace(string $subject, string $pattern, string $replacement=null, int $limit=-1): string .[method]
 ----------------------------------------------------------------------------------------------------
 
-Replaces all occurrences matching regular expression, passed in as second argument. Though it might as well be a hash-map in `pattern => replacement` format. The third argument is a replacement string or a callback and the fourth limits the count of replacements.
+Replaces all occurrences matching the regular expression, passed in as the second argument. Though it might as well be a hash-map in `pattern => replacement` format. The third argument is a replacement string or a callback and the fourth limits the count of replacements.
 
 ```php
 echo Strings::replace('One, two,three', '~[a-z]+~i', '*');

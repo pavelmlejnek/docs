@@ -1,12 +1,12 @@
 DI: Built-in Container Extensions
 *********************************
 
-Package `nette/di` contains a few built-in extension to DI container.
+Package `nette/di` contains a few built-in extensions to DI container.
 
 ExtensionsExtension
 ===================
 
-Using this extension we can add a more extensions defined in NEON configuration files.
+Using this extension we can add more extensions defined in NEON configuration files.
 
 ```neon
 extensions:
@@ -20,7 +20,7 @@ dibi:
 	host: localhost
 ```
 
-We can pass arguments into constructor for extension class.
+We can pass arguments into the constructor for extension class.
 
 ```neon
 extensions:
@@ -52,13 +52,13 @@ class Articles
 }
 ```
 
-By default is `inject` attribute enabled only for presenters.
+By default, the `inject` attribute is enabled only for presenters.
 
 
 DecoratorExtension
 ==================
 
-Using this extensions we can add tags or add `setup` (eg call methods) to all services of given class or implementing given interface.
+Using this extension we can add tags or add `setup` (eg call methods) to all services of a given class or implementing given interface.
 
 ```neon
 decorator:
@@ -118,14 +118,14 @@ php:
 ConstantsExtension
 ==================
 
-We can define PHP contants by this extension.
+We can define PHP constants by this extension.
 
 ```neon
 constants:
 	FOOBAR: 'baz'
 ```
 
-The `FOOBAR` constant will available in our application after startup.
+The `FOOBAR` constant will be available in our application after startup.
 
 
 {{composer: nette/di}}

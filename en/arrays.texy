@@ -41,7 +41,7 @@ $value = Arrays::get($array, ['color', 'favorite']);
 getRef(array &$array, string|int|array $key): mixed .[method]
 -------------------------------------------------------------
 
-Gets reference to given `$array[$key]`. If the index does not exist, new one is created with `null`.
+Gets reference to given `$array[$key]`. If the index does not exist, a new one is created with `null`.
 
 ```php
 $valueRef = & Arrays::getRef($array, 'foo');
@@ -72,7 +72,7 @@ Value `PREG_GREP_INVERT` may be set as `$flags`, which inverts the selection.
 searchKey(array $array, string|int $key): int .[method]
 -------------------------------------------------------
 
-Returns zero-indexed position of given array key. Returns `null` if key is not found.
+Returns the zero-indexed position of given array key. Returns `null` if the key is not found.
 
 ```php
 $array = ['first' => 10, 'second' => 20];
@@ -98,7 +98,7 @@ Arrays::insertAfter($array, 'first', ['hello' => 'world']);
 insertBefore(array &$array, string|int $key, array $inserted): void .[method]
 -----------------------------------------------------------------------------
 
-Prepends content of `$inserted` array into `$array` before item with `$key` index. If such a `$key` does not exist, the array is inserted at the beginning.
+Prepends content of `$inserted` array into `$array` before the item with `$key` index. If such a `$key` does not exist, the array is inserted at the beginning.
 
 ```php
 $array = ['first' => 10, 'second' => 20];
@@ -110,7 +110,7 @@ Arrays::insertBefore($array, 'first', ['hello' => 'world']);
 mergeTree(array $array1, array $array2): array .[method]
 --------------------------------------------------------
 
-Merges two arrays recursively. Useful for combining tree structures. It behaves as the `+` operator applied to arrays, ie. it adds to keys/values of the second array to the the first one. In case of collision, values of first array are used.
+Merges two arrays recursively. Useful for combining tree structures. It behaves as the `+` operator applied to arrays, ie. it adds to keys/values of the second array to the first one. In case of collision, the values of the first array are used.
 
 ```php
 $array1 = ['color' => ['favorite' => 'red'], 5];
@@ -120,7 +120,7 @@ $array = Arrays::mergeTree($array1, $array2);
 // $array = ['color' => ['favorite' => 'red', 'blue'], 5];
 ```
 
-Values from second array are always appended to the first. Though the disappearance of value `10` might be confusing, it's fine - both `5` of the first array and the `10` do have same key `0`.
+Values from the second array are always appended to the first. Though the disappearance of value `10` might be confusing, it's fine - both `5` of the first array and the `10` do have the same key `0`.
 
 
 renameKey(array &$array, string|int $oldKey, string|int $newKey): void .[method]
@@ -181,7 +181,7 @@ $array = Arrays::normalize(['first', 'a' => 'second'], 'foobar');
 pick(array &$arr, string|int $key, mixed $default=null): mixed .[method]
 ------------------------------------------------------------------------
 
-Returns and removes value of the item in array or if not exist throw exception or return filled `$default`.
+Returns and removes the value of the item in the array or if not exist throw exception or return filled `$default`.
 
 ```php
 $array = [1 => 'foo', null => 'bar'];
@@ -197,7 +197,7 @@ $c = Arrays::pick($array, 'not-exists');
 some(array $arr, callable $callback): bool .[method]
 ----------------------------------------------------
 
-Check if some item of the array go through condition in `$callback`, which has the signature `function ($value, $key, array $arr): bool`.
+Check if some item of the array goes through the condition in `$callback`, which has the signature `function ($value, $key, array $arr): bool`.
 
 ```php
 $array = ['foo', 'bar', 'baz'];
@@ -210,7 +210,7 @@ $res = Arrays::some($array, function ($value): bool { return $value === 'bar'; }
 every(array $arr, callable $callback): bool .[method]
 -----------------------------------------------------
 
-Check if all items of the array go through condition in `$callback`, which has the signature `function ($value, $key, array $arr): bool`.
+Check if all items of the array go through the condition in `$callback`, which has the signature `function ($value, $key, array $arr): bool`.
 
 ```php
 $array = ['foo', 'bar', 'baz'];
@@ -223,7 +223,7 @@ $res = Arrays::every($array, function ($value): bool { return $value === 'bar'; 
 map(array $arr, callable $callback): array .[method]
 ----------------------------------------------------
 
-Apply `$callback` to the all items in array and return results, which has the signature `function ($value, $key, array $arr): bool`.
+Apply `$callback` to all items in the array and return results, which has the signature `function ($value, $key, array $arr): bool`.
 
 ```php
 $array = ['foo', 'bar', 'baz'];
@@ -286,7 +286,7 @@ $list[] = 'c';
 echo count($list); // 3
 ```
 
-Over the object you can iterate or call `count()`, as in the case of a array.
+Over the object, you can iterate or call `count()`, as in the case of an array.
 
 Accessing keys beyond the allowed values throws an exception `Nette\OutOfRangeException`:
 

@@ -2,9 +2,9 @@ Requirements Checker
 ********************
 
 .[perex]
-You will need **PHP version 7.1.0 or higher** to run Nette Framework 3.0. Also, your server will have to comply with required configuration of PHP.
+You will need **PHP version 7.1.0 or higher** to run Nette Framework 3.0. Also, your server will have to comply with the required configuration of PHP.
 
-Requirements Checker is tool bundled with application skeleton known as [Sandbox|https://github.com/nette/sandbox], which checks server configuration and tells you, whether you can use this framework or not.
+Requirements Checker is a tool bundled with application skeleton known as [Sandbox|https://github.com/nette/sandbox], which checks server configuration and tells you, whether you can use this framework or not.
 
 You can download Nette Framework [manually |www:download] (package contains Sandbox), but the recommended way is to use [Composer |/composer]:
 
@@ -14,7 +14,7 @@ composer create-project nette/sandbox
 
 Requirements Checker is located in folder `/checker` of Sandbox, so type URL to web browser i.e. `http://localhost/sandbox/www/checker`. Now you will find if your server meets minimal requirements.
 
-Green message with "Congratulations!" is self explaining tells if you can use Nette right away!
+Green message with "Congratulations!" is self-explaining tells if you can use Nette right away!
 
 
 [* requirements-checker.gif *] *** *Requirements Checker's final verdict* .<>
@@ -46,6 +46,6 @@ Green message with "Congratulations!" is self explaining tells if you can use Ne
 
 
 .[caution]
-You should delete Requirements Checker after using it, because it prints information about PHP configuration.
+You should delete Requirements Checker after using it because it prints information about PHP configuration.
 
 {{sidebar: no}}

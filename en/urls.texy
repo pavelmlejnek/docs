@@ -35,7 +35,7 @@ echo $url->fragment;    // footer
 
 In addition to `http` URL scheme, it's possible to use others, for example `https`, `file` or `ftp`.
 
-Parts of an URL can of course be changed.
+Parts of an URL can, of course, be changed.
 
 ```php
 $url = new Url('http://nette.org/en/documentation?action=history#footer');

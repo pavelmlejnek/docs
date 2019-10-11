@@ -2,7 +2,7 @@ Migrating to Version 2.2
 ************************
 
 .[perex]
-This version brings a huge change in structure of the framework -- the "main repository":https://github.com/nette/nette has been split into several standalone components.
+This version brings a huge change in the structure of the framework -- the "main repository":https://github.com/nette/nette has been split into several standalone components.
 
 The main repository has been physically split into the following repositories:
 "Application":[https://github.com/nette/application],
@@ -27,7 +27,7 @@ The main repository has been physically split into the following repositories:
 "Utils":[https://github.com/nette/utils]. Each repository represents one component and has its own history, releases, issues, pull-requests, and, of course, `composer.json`.
 
 You can still "download the distribution package":https://nette.org/download or install the whole framework using [Composer] by requiring `nette/nette` in your `composer.json`.
-In addition, you can use each of the components on its own, without installing the rest of the framework.
+Also, you can use each of the components on its own, without installing the rest of the framework.
 
 
 Latte
@@ -53,7 +53,7 @@ $latte->render('template.latte', $parameters);
 
 Latte now handles template loading and caching. The original `FileTemplate` and the `Nette\Templating` namespaces have been deprecated.
 
-In addition, `Nette\Application` provides its own `Template`:[https://api.nette.org/2.2/Nette.Bridges.ApplicationLatte.Template.html] class, which replaces `FileTemplate`, and `TemplateFactory`, which creates and initializes the templates for use in presenters and controls.
+Also, `Nette\Application` provides its own `Template`:[https://api.nette.org/2.2/Nette.Bridges.ApplicationLatte.Template.html] class, which replaces `FileTemplate`, and `TemplateFactory`, which creates and initializes the templates for use in presenters and controls.
 
 
 Tracy
@@ -61,17 +61,17 @@ Tracy
 
 The whole debugger and diagnostics classes were moved to the `Tracy` namespace. This means that the most important class, `Nette\Diagnostics\Debugger`, was renamed to `Tracy\Debugger`.
 
-Prefix of the CSS classes in the debugger panel was changed from `nette-` to `tracy-` and the `nette-toggle-collapsed` CSS class was replaced by the pair of `tracy-toggle` and `tracy-collapsed`. In old extensions, these classes are automatically rewritten.
+The prefix of the CSS classes in the debugger panel was changed from `nette-` to `tracy-` and the `nette-toggle-collapsed` CSS class was replaced by the pair of `tracy-toggle` and `tracy-collapsed`. In old extensions, these classes are automatically rewritten.
 
 
 Other Changes
 =============
 
-Classes `ArrayHash`, `ArrayList`, `DateTime`, `Image` and `ObjectMixin` are now part of the `Utils` package and they were moved from `Nette` to the `Nette\Utils` namespace. `NetteLoader` automatically creates aliases for these classes so they can be referenced by their old name. Aliases for other renamed classes are created at run-time (i.e. during the auto loading), and a warning is raised each time you use class by its old name.
+Classes `ArrayHash`, `ArrayList`, `DateTime`, `Image` and `ObjectMixin` are now part of the `Utils` package and they were moved from `Nette` to the `Nette\Utils` namespace. `NetteLoader` automatically creates aliases for these classes so they can be referenced by their old name. Aliases for other renamed classes are created at run-time (i.e. during the autoloading), and a warning is raised each time you use class by its old name.
 
 `Nette\Utils\MimeTypeDetector` class was deprecated, the "Fileinfo":[http://php.net/manual/en/book.fileinfo.php] should be used directly since PHP 5.3.
 
-Support for `@serializationVersion` annotation and custom annotation classes lookup was dropped, since it was not used and only decreased the application performance.
+Support for `@serializationVersion` annotation and custom annotation classes lookup was dropped since it was not used and only decreased the application performance.
 
 When an error during link creation occurs, the returned path starts with `#error:` instead of `error` to prevent browser errors. If you are using CSS to highlight incorrect links, please update your "CSS styles for invalid links":[https://github.com/nette/sandbox/commit/ac7a0fd2d707160426ab184442b8d68c590f8de2#diff-2].
 
@@ -87,7 +87,7 @@ New function `fetchAssoc()` was added to the `Nette\Database`. The usage example
 
 `@inject` annotations now respect aliases defined by `use` statements. This means you are no longer required to write fully qualified names when injecting dependencies.
 
-Class `Nette\Security\Passwords`:[https://api.nette.org/2.2/Nette.Security.Passwords.html] with static methods for password hashing and verification was introduced. This class uses bcrypt algorithm and requires PHP 5.3.7 or higher. The bcrypt algorithm is more secure than traditionally used MD5 and SHA-* hashing, so we recommend using bcrypt functions instead. Semantics of these functions is compatible with the "Password Hashing extension":[http://www.php.net/manual/en/book.password.php] from PHP 5.5.
+Class `Nette\Security\Passwords`:[https://api.nette.org/2.2/Nette.Security.Passwords.html] with static methods for password hashing and verification was introduced. This class uses bcrypt algorithm and requires PHP 5.3.7 or higher. The bcrypt algorithm is more secure than traditionally used MD5 and SHA-* hashing, so we recommend using bcrypt functions instead. The semantics of these functions is compatible with the "Password Hashing extension":[http://www.php.net/manual/en/book.password.php] from PHP 5.5.
 
 Last, but not least, when defining users in the `config.neon` file, you can specify role for each user:
 

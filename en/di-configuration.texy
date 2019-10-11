@@ -9,13 +9,13 @@ Dependency Injection (DI) container is easily configured using NEON files. We'll
 - how to include multiple configuration files
 </div>
 
-Configuration is usually written in NEON format. Have fun trying out the syntax at https://ne-on.org.
+The configuration is usually written in NEON format. Have fun trying out the syntax at https://ne-on.org.
 
 
 Parameters
 ==========
 
-You can define parameters which can then be used as part of service definitions. This can help to separate out values that you will want to change more regularly.
+You can define parameters which can then be used as part of service definitions. This can help to separate values that you will want to change more regularly.
 
 Use the `parameters` section of a config file to set parameters:
 
@@ -39,7 +39,7 @@ parameters:
 	languages: [cs, en, de]
 ```
 
-You can refer to single key as `%mailer.user%`.
+You can refer to a single key as `%mailer.user%`.
 
 .[note]
 If you use a string that starts with `@` or has `%` anywhere in it, you need to escape it by adding another `@` or `%`.
@@ -48,7 +48,7 @@ If you use a string that starts with `@` or has `%` anywhere in it, you need to 
 Services
 ========
 
-The configuration file is place where we add definitions of our own services in section `services`. For example, this is definition of service named `database` which is `PDO` instance:
+The configuration file is a place where we add definitions of our services in section `services`. For example, this is a definition of service named `database` which is `PDO` instance:
 
 ```neon
 services:
@@ -69,7 +69,7 @@ services:
 		arguments: [%dsn%, %user%, %password%]
 ```
 
-It generates factory method in DI container:
+It generates a factory method in DI container:
 
 ```php
 function createServiceDatabase(): PDO
@@ -230,7 +230,7 @@ Advanced syntax
 
 The NEON format gives us extraordinary powerful syntax expression, with which you can write almost everything.
 
-We can call referenced service's methods, but for simplicity we write `::` instead of `->`:
+We can call referenced service's methods, but for simplicity, we write `::` instead of `->`:
 
 ```neon
 services:
@@ -345,7 +345,7 @@ services:
 			- setCacheStorage
 ```
 
-Autowiring is driven by typehints, so `ArticleRepository` class must be defined as follows:
+Autowiring is driven by type hints, so `ArticleRepository` class must be defined as follows:
 
 ```php
 namespace Model;
@@ -386,7 +386,7 @@ services:
 Narrowing of Autowiring
 -----------------------
 
-For individual services, autowiring can be narrowed down to specific classes or interfaces. The service is then passed to parameters (e.g. in constructor) whose typehint, in addition that matches service type, also matches the types specified in the settings.
+For individual services, autowiring can be narrowed down to specific classes or interfaces. The service is then passed to parameters (e.g. in a constructor) whose type hint, in addition that matches service type, also matches the types specified in the settings.
 
 Let's take an example:
 
@@ -420,9 +420,9 @@ services:
 	childDep: ChildDependent    # passes the service 'child' to the constructor
 ```
 
-The `parentDep` service throws the exception `Multiple services of type ParentClass found: parent, child`, because both `parent` and `child` fit into its constructor and autowiring can not make a decision on which one to choose.
+The `parentDep` service throws the exception `Multiple services of type ParentClass found: parent, child` because both `parent` and `child` fit into its constructor and autowiring can not make a decision on which one to choose.
 
-For service `child`, we can therefore narrow down its autowiring to `ChildClass`:
+For service `child`, we can, therefore, narrow down its autowiring to `ChildClass`:
 
 ```neon
 services:
@@ -439,7 +439,7 @@ Now `parent` is passed to `parentDep` constructor, as it is the only satisfactor
 
 In the case of `child`, `autowired: ChildClass` could be written as `autowired: self` as the `self` means current service type.
 
-The `autowired` key can include several classes and interfaces as array:
+The `autowired` key can include several classes and interfaces as an array:
 
 ```neon
 autowired: [BarClass, FooInterface]
@@ -487,11 +487,11 @@ class ChildDependent
 
 When we do not limit the `child` service, it will fit into the constructors of all `FooDependent`, `BarDependent`, `ParentDependent` and `ChildDependent` classes and autowiring will pass it there.
 
-If we narrow `child` service's autowiring down to `ChildClass` with `autowired: ChildClass` (or `self`), autowiring will pass it only to the `ChildDependent` constructor, because only its typehint *is a* `ChildClass`.
+If we narrow `child` service's autowiring down to `ChildClass` with `autowired: ChildClass` (or `self`), autowiring will pass it only to the `ChildDependent` constructor, because only its type hint *is a* `ChildClass`.
 
-If we limit it to `ParentClass` with `autowired: ParentClass`, autowiring will also pass it to the `ParentDependent` constructor, because its typehint will match too.
+If we limit it to `ParentClass` with `autowired: ParentClass`, autowiring will also pass it to the `ParentDependent` constructor, because its type hint will match too.
 
-If we limit it to `FooInterface`, it will be autowired into the `FooDependent` constructor and still in `ParentDependent` (typehint `ParentClass` *is a* `FooInterface`) and `ChildDependent`, but not in `BarDependent`, because the `BarInterface` typehint *is not a* `FooInterface`.
+If we limit it to `FooInterface`, it will be autowired into the `FooDependent` constructor and still in `ParentDependent` (type hint `ParentClass` *is a* `FooInterface`) and `ChildDependent`, but not in `BarDependent`, because the `BarInterface` type hint *is not a* `FooInterface`.
 
 ```neon
 services:

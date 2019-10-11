@@ -29,7 +29,7 @@ $form->addText('zip', 'Postcode:')
 ```
 
 .[note]
-The `Form::INTEGER`, `NUMERIC` a `FLOAT` rules automatically convert the value to integer (or float respectively). In addition, `Form::URL` automatically completes the URL, for example, `nette.org` will be completed to `https://nette.org`.
+The `Form::INTEGER`, `NUMERIC` a `FLOAT` rules automatically convert the value to an integer (or float respectively). Also, `Form::URL` automatically completes the URL, for example, `nette.org` will be completed to `https://nette.org`.
 
 
 addPassword(string|int $name, $label=null): static .[method]
@@ -154,7 +154,7 @@ $form->addRadioList('gender', 'Gender:', $sex)
 addCheckboxList(string|int $name, $label=null, array $items=null): static .[method]
 ===================================================================================
 
-Adds list of checkboxes for selecting multiple elements. Array of values is passed as the third argument. The component checks if the submitted values are from the given range.
+Adds a list of checkboxes for selecting multiple elements. An array of values is passed as the third argument. The component checks if the submitted values are from the given range.
 
 ```php
 $form->addCheckboxList('colors', 'Colors:', [
@@ -168,7 +168,7 @@ $form->addCheckboxList('colors', 'Colors:', [
 addSelect(string|int $name, $label=null, array $items=null): static .[method]
 =============================================================================
 
-Adds select box (class [SelectBox |api:Nette\Forms\Controls\SelectBox]). Array of offered values is passed as third argument. Might as well be two-dimensional. The first item is often used as a call-to-action message, but worthless when actually selected - that's what method `setPrompt()` is for.
+Adds select box (class [SelectBox |api:Nette\Forms\Controls\SelectBox]). An array of offered values is passed as the third argument. Might as well be two-dimensional. The first item is often used as a call-to-action message, but worthless when selected - that's what method `setPrompt()` is for.
 
 ```php
 $countries = [
@@ -235,7 +235,7 @@ If you don't want to validate the form when a submit button is pressed (such as 
 addButton(string|int $name, $caption): static .[method]
 =======================================================
 
-Adds button (class [Button |api:Nette\Forms\Controls\Button]) without submit function. It is useful for binding other functionality to id, for example a JavaScript action.
+Adds button (class [Button |api:Nette\Forms\Controls\Button]) without submit function. It is useful for binding other functionality to id, for example, a JavaScript action.
 
 ```php
 $form->addButton('raise', 'Raise salary')

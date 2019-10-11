@@ -299,7 +299,7 @@ function ($a, $b) use (&$c) {
 Method and Function Body Generator
 ----------------------------------
 
-You can use special placeholders for handy way to generate method or function body.
+You can use special placeholders for a handy way to generate method or function body.
 
 Simple placeholders:
 
@@ -471,7 +471,7 @@ class A
 Generate using Reflection
 -------------------------
 
-Another common use case is to create class or method based on existing ones:
+Another common use case is to create a class or method based on existing ones:
 
 ```php
 $class = Nette\PhpGenerator\ClassType::from(PDO::class);

@@ -2,7 +2,7 @@ URL Routing
 ***********
 
 <div class=perex>
-Routing is a two-way conversion between URL and presenter action. *Two-way* means we can both determine what presenter URL links to, but also vice versa: generate URL for given action. This article contains:
+Routing is a two-way conversion between URL and presenter action. *Two-way* means we can both determine what presenter URL links to, but also vice versa: generate URL for the given action. This article contains:
 
 - how to define routes and create links
 - a few notes about SEO redirection
@@ -30,7 +30,7 @@ Thanks to bidirectional routing you don't have to hardcode URLs into templates a
 
 Learn more about [creating links |presenters#link-creation].
 
-Routing is a **separate application layer**. This allows you to very efficiently manipulate with the URL structure without the need to modify the application itself. It's simple to change routes anytime, while keeping the original addresses preserved and automatically redirect to the new variants. So hey, who's got that? :-)
+Routing is a **separate application layer**. This allows you to very efficiently manipulate with the URL structure without the need to modify the application itself. It's simple to change routes anytime while keeping the original addresses preserved and automatically redirect to the new variants. So hey, who's got that? :-)
 
 
 SimpleRouter
@@ -64,7 +64,7 @@ services:
 Route: for Prettier URLs .{toc: Route}
 ======================================
 
-Human-friendly URLs (also more cool & prettier) are easier to remember and do help SEO((search engine optimalization)). Nette Framework keeps current trends in mind and fully meets developers' desires.
+Human-friendly URLs (also more cool & prettier) are easier to remember and do help SEO((search engine optimization)). Nette Framework keeps current trends in mind and fully meets developers' desires.
 
 All requests must be handled by `index.php` file. This can be accomplished e.g. by using Apache module `mod_rewrite` or Nginx's `try_files` directive (see [how to configure a server for nice URLs |troubleshooting#how-to-configure-a-server-for-nice-urls]).
 
@@ -101,7 +101,7 @@ The simplest path mask consists only of a **static URL** and a target presenter 
 $route = new Route('products', 'Products:default');
 ```
 
-Most real masks however contain some **parameters**. Parameters are enclosed in angle brackets (e.g. `<year>`) and are passed to the target presenter.
+Most real masks, however, contain some **parameters**. Parameters are enclosed in angle brackets (e.g. `<year>`) and are passed to the target presenter.
 
 ```php
 $route = new Route('history/<year>', 'History:view');
@@ -116,7 +116,7 @@ $route = new Route('<presenter>/<action> ? id=<productId> & cat=<categoryId>', .
 
 The parameters before a question mark are called *path parameters* and the parameters after a question mark are called *query parameters*.
 
-Mask can not only describe path relative to application document root (web root), but can as well contain absolute path (starts with a single slash) or absolute URL with domain (starts with a double slash).
+Mask can not only describe path relative to application document root (web root) but can as well contain absolute path (starts with a single slash) or absolute URL with a domain (starts with a double slash).
 
 ```php
 // relative path to application document root (www directory)
@@ -217,7 +217,7 @@ Default validation expression for path parameters is `[^/]+`, meaning all charac
 Optional Sequences
 ------------------
 
-Square brackets denote optional parts of mask. Any part of mask may be set as optional, including those containing parameters:
+Square brackets denote optional parts of the mask. Any part of the mask may be set as optional, including those containing parameters:
 
 ```php
 $route = new Route('[<lang [a-z]{2}>/]<name>', 'Article:view');
@@ -227,7 +227,7 @@ $route = new Route('[<lang [a-z]{2}>/]<name>', 'Article:view');
 //   /download           action => view, lang => null, name => download
 ```
 
-Obviously, if a parameter is inside an optional sequence, it's optional too and defaults to `null`. Sequence should define it's surroundings, in this case a slash which must follow a parameter, if set. The technique may be used for example for optional language subdomains:
+Obviously, if a parameter is inside an optional sequence, it's optional too and defaults to `null`. The sequence should define it's surroundings, in this case, a slash which must follow a parameter, if set. The technique may be used for example for optional language subdomains:
 
 ```php
 $route = new Route('//[<lang=en>.]%domain%/<presenter>/<action>', ...);
@@ -249,7 +249,7 @@ $route = new Route(
 ```
 
 
-URL generator tries to keep the URL as short as possible (while unique), so what can be omitted is not used. That's why `index[.html]`  route generates `/index`. This behavior can be inverted by writing an exclamation mark after the leftmost square bracket that denotes the respective optional sequence:
+URL generator tries to keep the URL as short as possible (while unique), so what can be omitted is not used. That's why `index[.html]`  route generates `/index`. This behaviour can be inverted by writing an exclamation mark after the leftmost square bracket that denotes the respective optional sequence:
 
 ```php
 // accepts both /hello and /hello.html, generates /hello
@@ -260,7 +260,7 @@ $route = new Route('<name>[!.html]');
 ```
 
 
-Optional parameters (ie. parameters having default value) without square brackets do behave as if wrapped like this:
+Optional parameters (ie. parameters having a default value) without square brackets do behave as if wrapped like this:
 
 ```php
 $route = new Route('<presenter=Homepage>/<action=default>/<id=>');
@@ -285,7 +285,7 @@ Foo parameters are basically unnamed parameters which allow you to match a regul
 $route = new Route('index<? \.html?|\.php|>', 'Homepage:default');
 ```
 
-It's also possible to explicitly define a string which will be used for URL generation (similar to setting default value for real parameters). The string must be placed directly after the question mark. The following route is similar to the previous one, but generates `/index.html` instead of `/index`, because the string `.html` is set as a "default value".
+It's also possible to explicitly define a string which will be used for URL generation (similar to set a default value for real parameters). The string must be placed directly after the question mark. The following route is similar to the previous one, but generates `/index.html` instead of `/index`, because the string `.html` is set as a "default value".
 
 ```php
 $route = new Route('index<?.html \.html?|\.php|>', 'Homepage:default');
@@ -310,7 +310,7 @@ Additionally, automatic redirection to the new URL form will cause to do not ind
 HTTPS
 -----
 
-We need configurate our server for use HTTPS protocol.
+We need to configure our server for use HTTPS protocol.
 
 Forward all addresses for already well-established applications can be achieved by using .htaccess file in the root directory of our application using a permanent redirect with code 301. (Settings may vary by hosting.)
 
@@ -384,7 +384,7 @@ Multiple keys under `Route::FILTER_TABLE` may have the same value. That's how al
 
 Dictionaries may be applied to any path parameter. If a translation is not found, the original (non-translated) value is used. The route by default accepts both translated (e.g. `/einkaufswagen`) and original (e.g. `/cart`) URLs. If you would like to accept only translated URLs, you need to add `Route::FILTER_STRICT => true` to the route definition.
 
-If we only want to only use a translation dictionary for a given parameter, let add `FILTER_STRICT => true`. This will ensure that only the values in dictionary well will be accepted.
+If we only want to only use a translation dictionary for a given parameter, let add `FILTER_STRICT => true`. This will ensure that only the values in the dictionary well will be accepted.
 
 In addition to the translation dictionary in the form of an array, it is possible to set own translation functions and filters:
 
@@ -404,7 +404,7 @@ Where 'filterInFunc` and `filterOutFunc` are functions or methods that convert b
 
 The default in-filter is [rawurldecode |php:rawurldecode] and the out-filter is a function that escapes special characters (such as a slash or a space) for use in the URL.
 
-There are situations where we want to change this behavior, for example, if we use the `path` parameter, which may include slashes. In order not to convert to `%2F`, cancel the filters:
+There are situations where we want to change this behaviour, for example, if we use the `path` parameter, which may include slashes. In order not to convert to `%2F`, cancel the filters:
 
 ```php
 // accepts http://files.example.com/path/to/my/file
@@ -494,9 +494,9 @@ services:
 ```
 
 .[caution]
-Order of routes is important, because they are tried sequentially from the first one to the last one. Basic rule is we **declare routes from the most specific to the most general**.
+Order of routes is important because they are tried sequentially from the first one to the last one. A basic rule is that we **declare routes from the most specific to the most general**.
 
-Count of routes has effects the performance of application, especially when generating links. It is therefore worthwhile to simplify the routing table.
+Count of routes has effects on the performance of an application, especially when generating links. It is, therefore, worthwhile to simplify the routing table.
 
 If a route is not found, the [BadRequestException |api:Nette\Application\BadRequestException] exception is thrown and the user will see it as the 404 Page Not Found.
 
@@ -518,7 +518,7 @@ class RouterFactory
 Modules
 -------
 
-In Nette we can split presenters into modules. Therefore we need to work with those modules in routes. We can use `module` parameter in `Route` class:
+In Nette, we can split presenters into modules. Therefore we need to work with those modules in routes. We can use the `module` parameter in `Route` class:
 
 ```php
 // URL manage/dashboard/default maps to presenter Admin:Dashboard
@@ -527,7 +527,7 @@ new Route('manage/<presenter>/<action>', [
 ]);
 ```
 
-If we have more routes that we want to group together in a module, we can use `RouteList` with name of module in constructor:
+If we have more routes that we want to group together in a module, we can use `RouteList` with the name of a module in the constructor:
 
 
 ```php
@@ -560,7 +560,7 @@ Working with routes may seem a bit magical at first. That's why you'll appreciat
 
 [* routing-debugger.png *]
 
-Routing debugger is enabled by default if the application runs in a debug mode. You can however disable it in a configuration file:
+Routing debugger is enabled by default if the application runs in a debug mode. You can, however, disable it in a configuration file:
 
 ```neon
 	routing:
@@ -571,20 +571,20 @@ Routing debugger is enabled by default if the application runs in a debug mode. 
 SEO and Canonicalization
 ========================
 
-Framework increases SEO (search engine optimization) as it prevents multiple URLs to link to different content (without a proper redirect). If more than one addresses link to the same target (`/index` and `/index.html`), framework choses the first (makes it canonical) and redirects the other one to it with an HTTP code 301. Thanks to that your page won't have duplicities on search engines and their rank won't be split.
+Framework increases SEO (search engine optimization) as it prevents multiple URLs to link to different content (without a proper redirect). If more than one addresses link to the same target (`/index` and `/index.html`), framework chooses the first (makes it canonical) and redirects the other one to it with an HTTP code 301. Thanks to that your page won't have duplicities on search engines and their rank won't be split.
 
-This whole process is called canonicalization. Default (canonical) URL is the one router generates, that is the first route in [collection |#route-collection] which does not return `null` and does not have a `ONE_WAY` [flag |#flags].
+This whole process is called canonicalization. Default (canonical) URL is the one router generates, that is the first route in [collection |#route-collection] which does not return `null` and does not have an `ONE_WAY` [flag |#flags].
 
 Canonicalization is done by [Presenter |api:Nette\Application\UI\Presenter] and it's switched on by default. You may disable it by setting [Presenter::$autoCanonicalize |api:Nette\Application\UI\Presenter::$autoCanonicalize] to `false`, e.g. in `startup()`.
 
 .[note]
-Ajax and POST requests are not redirected as user would suffer either a data loss, or it would yield no additional SEO value.
+Ajax and POST requests are not redirected as an user would suffer either a data loss, or it would yield no additional SEO value.
 
 
 Custom Router
 =============
 
-If these offered routes do not fit your needs, you may create your own router and add it to your *router collection*. Router is nothing more than an implementation of [Router |api:Nette\Routing\Router] with it's two methods:
+If these offered routes do not fit your needs, you may create your own router and add it to your *router collection*. Router is nothing more than an implementation of [Router |api:Nette\Routing\Router] with its two methods:
 
 ```php
 use Nette\Http\IRequest as HttpRequest;
@@ -608,6 +608,6 @@ Method `match` does process an [HttpRequest  |api:Nette\Http\Request] (which off
 
 Method `constructUrl` generates an absolute URL from array of parameters, possibly utilizing information from `$refUrl` argument.
 
-Possibilities of custom routers are unlimited, for example it's possible to implement a router based on database records.
+Possibilities of custom routers are unlimited, for example, it's possible to implement a router based on database records.
 
 {{composer: nette/application}}

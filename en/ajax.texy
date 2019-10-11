@@ -3,7 +3,7 @@ AJAX & Snippets
 
 <div class=perex>
 Modern web applications nowadays run half on a server and half in a browser. AJAX is the vital uniting factor. What support does Nette Framework offer?
-- sending template fragments (so called *snippets*)
+- sending template fragments (so-called *snippets*)
 - passing variables between PHP and JavaScript
 - AJAX applications debugging
 </div>
@@ -27,7 +27,7 @@ There is a pre-processed object called `payload` dedicated to sending data to th
 	}
 ```
 
-For a full control over your JSON output use JsonResponse in your presenter. It terminates presenter immediately and you'll do without a template:
+For full control over your JSON output use JsonResponse in your presenter. It terminates presenter immediately and you'll do without a template:
 
 ```php
 	$this->sendResponse(new JsonResponse(['key' => 'value', ...]));
@@ -58,7 +58,7 @@ Each descendant of class [Control |components] (which a Presenter is too) is abl
 		...
 	}
 ```
-Nette, however, offers an even slighter distinction than on the level of components. The listed methods can accept a name of a snippet as a parameter. Hence, it is possible to invalidate (that is to force to re-render) on the level of snippets (every object can keep any number of snippets). If the entire component is invalidated, then every snippet re-renders. A component is “invalid” even if any of its subcomponents is invalid as well.
+Nette, however, offers an even slighter distinction than on the level of components. The listed methods can accept the name of a snippet as a parameter. Hence, it is possible to invalidate (that is to force to re-render) on the level of snippets (every object can keep any number of snippets). If the entire component is invalidated, then every snippet re-renders. A component is “invalid” even if any of its subcomponents are invalid as well.
 
 ```php
 echo $this->isControlInvalid(); // -> false
@@ -103,7 +103,7 @@ If you would like to create a snippet with a different containing element than `
 Dynamic Snippets
 ================
 
-In Nette, you can also use snippets, whose name is created during runtime. This is best suitable for various lists where we need to change just one row, but we don't want transfer the whole list by AJAX. An example of this would be:
+In Nette, you can also use snippets, whose name is created during runtime. This is best suitable for various lists where we need to change just one row, but we don't want to transfer the whole list by AJAX. An example of this would be:
 
 ```html
 <ul n:snippet="itemsContainer">
@@ -125,7 +125,7 @@ class HomepagePresenter extends Nette\Application\UI\Presenter
 	/**
 	 * This method returns data for the list.
 	 * Usually this would just request the data from a model.
-	 * For the purpose of this example, the data is hard-coded.
+	 * For this example, the data is hard-coded.
 	 */
 	private function getTheWholeList(): array
 	{
@@ -157,7 +157,7 @@ class HomepagePresenter extends Nette\Application\UI\Presenter
 Snippets in an Included Template
 ================================
 
-It can happen that the snippet is in a template, which is being included to a different template. In such case we need to wrap the inclusion of a template in the `snippetArea` tag, then we invalidate both snippetArea and the actual snippet.
+The snippet can be in a template, which is being included to a different template. In such case we need to wrap the inclusion of a template in the `snippetArea` tag, then we invalidate both snippetArea and the actual snippet.
 
 Tag `snippetArea` ensures, that the code inside is executed, but only the actual snippet in the included template is sent do the browser.
 
@@ -209,13 +209,13 @@ In this case, the simplest way is to wrap the whole list in one more snippet and
 	}
 ```
 
-The same goes for deleting an item. It would be possible to send empty snippet, but usually lists can be paginated and it would be complicated to implement deleting one item and loading another (which used to be on a different page of the paginated list).
+The same goes for deleting an item. It would be possible to send empty snippet, but usually, lists can be paginated and it would be complicated to implement deleting one item and loading another (which used to be on a different page of the paginated list).
 
 
 Sending parameters to component
 ===============================
 
-When we send parameters to component via AJAX request, whether signal parameters or persistent parameters, we must provide their global name, which also contains name of the component. The full name of parameter returns the `getParameterId()` method.
+When we send parameters to the component via AJAX request, whether signal parameters or persistent parameters, we must provide their global name, which also contains the name of the component. The full name of parameter returns the `getParameterId()` method.
 
 ```js
 $.getJSON(
@@ -227,7 +227,7 @@ $.getJSON(
 });
 ```
 
-And handle method with s corresponding parameters in component.
+And handle method with corresponding parameters in the component.
 
 ```php
 public function handleChangeCountBasket(int $id, int $count): void

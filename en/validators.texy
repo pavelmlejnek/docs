@@ -16,7 +16,7 @@ use Nette\Utils\Validators;
 Rules
 =====
 
-Rule definitions are written in a similar way as [Latte filters|latte:filters]. Each rule is separated with vertical bar (`|`) and optionally suffixed with parameters after colon.
+Rule definitions are written in a similar way as [Latte filters|latte:filters]. Each rule is separated with a vertical bar (`|`) and optionally suffixed with parameters after a colon.
 
 .[wide]
 | Type ||
@@ -128,7 +128,7 @@ Validators::isNumeric('nette'); // false
 isCallable(mixed $value): bool .[method]
 ----------------------------------------
 
-Verifies that the input is callable.
+Verifies that the input is a callable.
 
 ```php
 Validators::isCallable('Foo::bar'); // true
@@ -176,7 +176,7 @@ Validators::isList(['foo' => 'Bar']); // false
 isInRange(mixed $value, array $range): bool .[method]
 -----------------------------------------------------
 
-Verifies that the input is in a given range.
+Verifies that the input is within a given range.
 
 ```php
 Validators::isInRange(5, [0, 5]); // true

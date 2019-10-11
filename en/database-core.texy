@@ -195,7 +195,7 @@ $database->query('INSERT INTO users', [
 
 Note that Nette Database recognizes the SQL context in which the array parameter is inserted and builds the SQL code accordingly. So, from the first array he generates `(id, name, year) VALUES (123, 'Jim', 1978)`, while the second converts to `name = 'Jim', year = 1978`.
 
-We can also describe sorting using array, in keys are column names and values are boolean that determines whether to sort in ascending order:
+We can also describe sorting using an array, in keys are column names and values are boolean that determines whether to sort in ascending order:
 
 ```php
 $database->query('SELECT id FROM author ORDER BY', [

@@ -20,7 +20,7 @@ In pure PHP is session data storage implemented as an array, which is accessible
 
 Nette Framework solves this problem by division of the session space into sections (objects [Nette\Http\SessionSection |api:]). So then every part of a program uses its own section with a unique name and no collision can occur.
 
-Let's start with a session manager, which is an object of class [Nette\Http\Session |api:]. We can access this service directly from presenter:
+Let's start with a session manager, which is an object of class [Nette\Http\Session |api:]. We can access this service directly from a presenter:
 
 ```php
 // $this stands for presenter
@@ -28,7 +28,7 @@ $session = $this->getSession();
 $mySection = $this->getSession('mySection');
 ```
 
-Or we can require it using [Dependency Injection |dependency-injection], in our case in constructor:
+Or we can require it using [Dependency Injection |dependency-injection], in our case in a constructor:
 
 ```php
 use Nette;
@@ -53,7 +53,7 @@ class MyService
 
 We can use a method `hasSection('myCounter')` for checking an existence of a section.
 
-There is no need to start or close that session, it's done automatically by framework itself. But we can start it manually by calling `$session->start()`. If we call that start() method more times, nothing happens and it will have no effect. You can also modify this behaviour [in configuration |configuring#session].
+There is no need to start or close that session, it's done automatically by the framework itself. But we can start it manually by calling `$session->start()`. If we call that start() method more times, nothing happens and it will have no effect. You can also modify this behavior [in configuration |configuring#session].
 
 And then it's really simple to work with that section:
 
@@ -68,7 +68,7 @@ echo $section->userName; // or echo $section['userName'];
 unset($section->userName);  // unset($section['userName']);
 ```
 
-It's possible to use `foreach` cycle to obtain all variables from section:
+It's possible to use `foreach` cycle to obtain all variables from the section:
 
 ```php
 foreach ($section as $key => $val) {
@@ -89,7 +89,7 @@ $section->count++; // increment counter by one
 echo "You displayed this page $section->count ×";
 ```
 
-Accessing a non-existent variable generates no error (variable has a null value). It could be undesirable behaviour in some cases and that's why there is a possibility to change it:
+Accessing a non-existent variable generates no error (variable has a null value). It could be undesirable behavior in some cases and that's why there is a possibility to change it:
 
 ```php
 $section->warnOnUndefined = true;
@@ -99,7 +99,7 @@ $section->warnOnUndefined = true;
 How to Set Expiration
 ---------------------
 
-Very useful feature is the possibility to set its own expiration time for every section or variable. So we can let expire user's login, but still remember a content of a shopping cart.
+The very useful feature is the possibility to set its own expiration time for every section or variable. So we can let expire user's login, but still remember the content of a shopping cart.
 
 ```php
 // section will expire after 2 minutes
@@ -119,14 +119,14 @@ $section->setExpiration(0, 'password');
 .[note]
 Remember that the expiration time of a whole session (see [session configuration|configuring#session]) has to be the same or greater than the time which was set for the separate sections or variables.
 
-Cancellation of a previously set expiration can be achieved by calling `removeExpiration()` method. Imediate cancellation of the whole section is handled by the `remove()` method.
+Cancellation of a previously set expiration can be achieved by calling `removeExpiration()` method. Immediate cancellation of the whole section is handled by the `remove()` method.
 
 
 
 Session Configuration
 ---------------------
 
-Configuration of a session must be done before using it. The best place to do it is a configuration file. Read more on [session configuration |configuring#session].
+The configuration of a session must be done before using it. The best place to do it is a configuration file. Read more on [session configuration |configuring#session].
 
 
 Safety First
@@ -134,12 +134,12 @@ Safety First
 
 The server assumes that it communicates with the same user as long as requests contain the same Session ID. The task of security mechanisms is to ensure that this behaviour really works and that there is no possibility to substitute or steal an identifier.
 
-That's why Nette Framework properly cofigures PHP directives to transfer Session ID only in cookies, to avoid access from JavaScript and to ignore the identifiers in the URL. Moreover in critical moments, such as user login, it generates a new Session ID.
+That's why Nette Framework properly configures PHP directives to transfer Session ID only in cookies, to avoid access from JavaScript and to ignore the identifiers in the URL. Moreover, in critical moments, such as user login, it generates a new Session ID.
 
-Function ini_set is used for configuring PHP, but unfortunately its use is prohibited at some web hosting services. If it's your case, try to ask your hosting provider to allow this function for you, or at least to configure his server properly.  .[note]
+Function ini_set is used for configuring PHP, but unfortunately, its use is prohibited at some web hosting services. If it's your case, try to ask your hosting provider to allow this function for you, or at least to configure his server properly.  .[note]
 
 Known Limitations
 -----------------
-In browser Chrome in the "System" section **Continue running background apps when Google Chrome is closed.**, this option is default enable. It causes the cookie that has a set expiration to close the browser, cookie still lives. Section with expiration 0, when you close the browser is not removed.
+In browser Chrome in the "System" section **Continue running background apps when Google Chrome is closed.**, this option is default enable. It causes the cookie that has a set expiration to close the browser, cookie still lives. A section with expiration 0, when you close the browser is not removed.
 
 {{composer: nette/http}}

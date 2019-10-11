@@ -2,7 +2,7 @@ Finder: Filesystem Search
 *************************
 
 .[perex]
-Class [api:Nette\Utils\Finder] makes browsing the directory structure really easy.
+Class [api:Nette\Utils\Finder] makes browsing the directory structure easy.
 
 
 All examples assume the following class alias is defined:

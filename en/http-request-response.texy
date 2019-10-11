@@ -8,7 +8,7 @@ HTTP request and response are encapsulated in [api:Nette\Http\Request] and [Resp
 HTTP Request
 ============
 
-Nette Framework cleans out data sent by user from control and invalid characters. It also removes any //magic_quotes//.
+Nette Framework cleans out data sent by a user from control and invalid characters. It also removes any //magic_quotes//.
 
 HTTP request which is an object of class [Nette\Http\Request |api:] we don't create directly, but we [receive it as a service from a DI container |di-usage].
 
@@ -49,7 +49,7 @@ echo $httpRequest->getRemoteAddress(); // user's IP address
 echo $httpRequest->getRemoteHost();    // and its DNS translation
 ```
 
-What URL the user came from? Returned as [Nette\Http\Url |urls] object.
+What URL did the user come from? Returned as [Nette\Http\Url |urls] object.
 
 ```php
 echo $httpRequest->getReferer()->host;
@@ -88,7 +88,7 @@ $headers = $httpRequest->getHeaders();
 $userAgent = $httpRequest->getHeader('User-Agent');
 ```
 
-A useful method is `detectLanguage()`. You can pass it an array with languages supported by application and it returns the one preferred by browser. It is not magic, the method just uses the `Accept-Language` header.
+A useful method is `detectLanguage()`. You can pass it an array with languages supported by the application and it returns the one preferred by a browser. It is not magic, the method just uses the `Accept-Language` header.
 
 ```php
 // Header sent by browser: Accept-Language: cs,en-us;q=0.8,en;q=0.5,sl;q=0.3
@@ -108,7 +108,7 @@ $body = $httpRequest->getRawBody();
 RequestFactory and URL Filtering
 --------------------------------
 
-Object holding current HTTP request is created by [api:Nette\Http\RequstFactory]. Its behavior can be modified. It's possible to clean up URLs from characters that can get into them because of poorly implemented comment systems on various other websites by using filters:
+Object holding current HTTP request is created by [api:Nette\Http\RequstFactory]. Its behaviour can be modified. It's possible to clean up URLs from characters that can get into them because of poorly implemented comment systems on various other websites by using filters:
 
 ```php
 $requestFactory = new Nette\Http\RequestFactory;

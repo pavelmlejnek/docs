@@ -56,7 +56,7 @@ $configurator->setTempDirectory(__DIR__ . '/../temp');
 RobotLoader
 ===========
 
-Usually we will want to automatically load the classes using [RobotLoader |robotloader], so we have to start it up and let it load classes from the directory where `Bootstrap.php` is located and all its subdirectories (i.e. `__DIR__`):
+Usually, we will want to automatically load the classes using [RobotLoader |robotloader], so we have to start it up and let it load classes from the directory where `Bootstrap.php` is located and all its subdirectories (i.e. `__DIR__`):
 
 ```php
 $configurator->createRobotLoader()
@@ -98,7 +98,7 @@ if (PHP_SAPI === 'cli') {
 }
 ```
 
-Alternatively we can use the `includes` section to load more configuration files.
+Alternatively, we can use the `includes` section to load more configuration files.
 
 ```neon
 includes:
@@ -148,7 +148,7 @@ $configurator->addDynamicParameters([
 External Services
 =================
 
-We can insert an instance of a class into the DI container directly, before the DI container creates it for us. The service must be defined with the `imported: true` attribute.
+We can insert an instance of a class into the DI container directly before the DI container creates it for us. The service must be defined with the `imported: true` attribute.
 
 ```neon
 services:

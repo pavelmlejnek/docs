@@ -12,7 +12,7 @@ Bootstrap
 ---------
 - removed deprecated constants `Configurator::DEVELOPMENT` and `PRODUCTION`
 - `Configurator::setDebugMode()` accepts only bool / string / array
-- in config file you can move all sections placed in `nette` to one level up. If you move up one of the sections `container`, `mailer` or `debugger`, rename it to `di`, `mail` and `tracy`.
+- in the config file, you can move all sections placed in `nette` to one level up. If you move up one of the sections `container`, `mailer` or `debugger`, rename it to `di`, `mail` and `tracy`.
 
 
 Caching
@@ -24,14 +24,14 @@ Database
 --------
 - MySqlDriver by default uses utf8mb4 encoding for MySQL >= 5.5.3 instead of utf8 ("see":https://forum.nette.org/en/22055-nette-2-3-0-beta-for-testing#p150705, **maybe it will be reverted**)
 - `IReflection` was changed to twins `IStructure` and `IConventions`
-- to ensure that new SQL translator do the same job as older one, you can install special tool named `CompatibilityChecker22`:https://github.com/nette/database/blob/compatibility/src/CompatibilityChecker22.php#L14
+- to ensure that new SQL translator do the same job as the older one, you can install a special tool named `CompatibilityChecker22`:https://github.com/nette/database/blob/compatibility/src/CompatibilityChecker22.php#L14
 
 
 DI
 ---
-- removed support for placing services inside extension section in configuration file
+- removed support for placing services inside extension section in the configuration file
 - removed support for dynamically added extensions
-- for replacing service dynamically (through removeService, addService calls), newly added service must be instance of same interface/class as original service
+- for replacing service dynamically (through removeService, addService calls), newly added service must be an instance of same interface/class as original service
 
 
 Finder
@@ -54,15 +54,15 @@ Http
 
 Mail
 ----
-- if you use variable `$mail` in template, you have to pass it to the template manually
+- if you use variable `$mail` in a template, you have to pass it to the template manually
 - but better than `{var $mail->subject = "Your new order"}` is this `<title>Your new order</title>`, isn't it?
-- if you have linked images (with relative paths) in template, pass base file path to images as second parameter to `setHtmlBody()`
+- if you have linked images (with relative paths) in a template, pass the base file path to images as the second parameter to `setHtmlBody()`
 - there is no need to cast templates to `(string)`
 
 
 RobotLoader
 -----------
-- is now case sensitive and will warn you if you use the wrong case in class name
+- is now case sensitive and will warn you if you use the wrong case in a class name
 
 
 SafeStream
